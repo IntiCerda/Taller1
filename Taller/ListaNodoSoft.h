@@ -109,12 +109,12 @@ bool ListaNodoSoft::existeJuegoPorNombre(string nombreJuego) {
         if (soft->tipoSoft() == "juego") {
             Juego* juego = static_cast<Juego*>(soft);
             if (juego->getNombre() == nombreJuego) {
-                return true; // El juego existe en la lista
+                return true; // El juego existe 
             }
         }
         aux = aux->getSig();
     }
-    return false; // El juego no se encuentra en la lista
+    return false; // El juego no se encuentra 
 }
 
 void ListaNodoSoft::imprimirOfimatica() {

@@ -122,6 +122,7 @@ void login(){
     return;
 }
 
+
 void menuJuegos(Interfaz* interfaz){
     string ej = "";
     int num = 0;
@@ -129,7 +130,7 @@ void menuJuegos(Interfaz* interfaz){
     string name = "";
     string genNuevo = "";
 
-    if(num != 5){
+    while(num != 5){
         cout<<"1.- Mostrar Juegos "<<endl;
         cout<<"2.- Jugar algun juego "<<endl;
         cout<<"3.- Cambiar genero de un juego "<<endl;
@@ -144,7 +145,7 @@ void menuJuegos(Interfaz* interfaz){
 
             case 1:
                 interfaz ->imprimirJuegos();
-                menuJuegos(interfaz);
+                
                 break;
 
             case 2:
@@ -154,7 +155,7 @@ void menuJuegos(Interfaz* interfaz){
 
                 interfaz->jugarJuego(ej);
                 
-                menuJuegos(interfaz);
+                
                 break;
             
             case 3:
@@ -166,12 +167,12 @@ void menuJuegos(Interfaz* interfaz){
 
                 interfaz -> cambiarGeneroJuego(name,genNuevo);
 
-                menuJuegos(interfaz);
+                
                 break;
 
             case 4:
                 interfaz->mostrarGeneroJuegos();
-                menuJuegos(interfaz);
+                
                 break;
 
             case 5:
@@ -186,6 +187,50 @@ void menuJuegos(Interfaz* interfaz){
     }
 }
 
+/*
+
+void menuJuegos(Interfaz* interfaz){
+
+    int opcion;
+    string ej;
+    do {
+        cout << "Menú:" << endl;
+        cout << "1. Opción 1" << endl;
+        cout << "2. Opción 2" << endl;
+        cout << "3. Opción 3" << endl;
+        cout << "4. Salir" << endl;
+        cout << "Seleccione una opción: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                cout << "Has seleccionado la Opción 1." << endl;
+                // Coloca aquí el código para la opción 1.
+                break;
+            case 2:
+                cout<<"\nIngrese nombre del Juego "<<endl;
+                cin>>ej;
+
+                interfaz->jugarJuego(ej);
+                
+                break;
+            case 3:
+                cout << "Has seleccionado la Opción 3." << endl;
+                // Coloca aquí el código para la opción 3.
+                break;
+            case 4:
+                cout << "Saliendo del programa." << endl;
+                break;
+            default:
+                cout << "Opción no válida. Por favor, seleccione una opción válida." << endl;
+                break;
+        }
+
+    } while (opcion != 4);
+
+    return ;
+}
+*/
 void menuOfimatica(Interfaz* interfaz){
         string ej = "";
     int num = 0;

@@ -145,6 +145,9 @@ void Interfaz :: agregarSoftSocial(string nombre, string developer, int edad, fl
 }
 
 //Carga la base de datos con usuarios y softwares
+//Existe una reaccion extrana al momento de compilar los string de la base de datos, los nombres generaran un error en la consola(solo los nombres con espacio)
+//Reemplazar espacio por "_", gracias.
+
 void Interfaz :: cargarBase(){
     agregarUserNormal("juanlopez", "clave123", 25, "juan.lopez@example.com");
     agregarUserNormal("mariaperez", "abc456", 30, "maria.perez@example.com");
@@ -168,62 +171,62 @@ void Interfaz :: cargarBase(){
     
 
     
-    agregarSoftJuego("The Witcher 3: Wild Hunt", "CD Projekt RED",17,29.99, "aventura");    //18+
+    agregarSoftJuego("The_Witcher_3", "CD Projekt RED",17,29.99, "aventura");    //18+
     agregarSoftJuego("Minecraft", "Mojang",1,26.95,"aventura");
 
-    agregarSoftJuego("Grand Theft Auto V", "Rockstar Games",1,29.99,"accion");
-    agregarSoftJuego("Red Dead Redemption 2", "Rockstar Games",17,59.99,"accion");      //18+
+    agregarSoftJuego("Grand_Theft_Auto_V", "Rockstar Games",1,29.99,"accion");
+    agregarSoftJuego("Red_Dead_Redemption_2", "Rockstar Games",17,59.99,"accion");      //18+
 
-    agregarSoftJuego("The Legend of Zelda: Breath of the Wild", "Nintendo",1,59.99,"MMO");
-    agregarSoftJuego("The Division 2", "Ubisoft",1,29.99,"MMO");
+    agregarSoftJuego("The_Legend_of_Zelda", "Nintendo",1,59.99,"MMO");
+    agregarSoftJuego("The_Division_2", "Ubisoft",1,29.99,"MMO");
 
-    agregarSoftJuego("Animal Crossing: New Horizons", "Nintendo",1,59.99,"simulacion");
-    agregarSoftJuego("Forza Horizon 4", "Playground Games",1,59.99,"simulacion");
+    agregarSoftJuego("Animal_Crossing", "Nintendo",1,59.99,"simulacion");
+    agregarSoftJuego("Forza_Horizon_4", "Playground Games",1,59.99,"simulacion");
 
-    agregarSoftJuego("Among Us", "Innersloth",1,5.99,"horror");
-    agregarSoftJuego("Resident Evil 7: Biohazard", "Capcom",17,19.99,"horror");     //18+
+    agregarSoftJuego("Among_Us", "Innersloth",1,5.99,"horror");
+    agregarSoftJuego("Resident_Evil_7: Biohazard", "Capcom",17,19.99,"horror");     //18+
 
     agregarSoftJuego("Overwatch", "Blizzard Entertainment",1,19.99,"FPS");
     agregarSoftJuego("Cyberpunk 2077", "CD Projekt RED",17,49.99,"FPS");    //18+
 
-    agregarSoftJuego("FIFA 22", "Electronic Arts",1,59.99,"deportes");
-    agregarSoftJuego("FIFA 21", "Electronic Arts",1,39.99,"deportes");
+    agregarSoftJuego("FIFA_22", "Electronic Arts",1,59.99,"deportes");
+    agregarSoftJuego("FIFA_21", "Electronic Arts",1,39.99,"deportes");
 
     agregarSoftJuego("Hades", "Supergiant Games",1,24.99,"puzzle");
-    agregarSoftJuego("Portal 2", "Valve Corporation",1,9.99,"puzzle");
+    agregarSoftJuego("Portal_2", "Valve Corporation",1,9.99,"puzzle");
     
-    agregarSoftJuego("The Elder Scrolls V: Skyrim", "Bethesda Game Studios",1,39.99,"RPG");
-    agregarSoftJuego("Dark Souls III", "FromSoftware",17,59.99,"RPG");  //18+
+    agregarSoftJuego("Skyrim", "Bethesda Game Studios",1,39.99,"RPG");
+    agregarSoftJuego("Dark_Souls_III", "FromSoftware",17,59.99,"RPG");  //18+
 
-    agregarSoftJuego("Civilization VI", "Firaxis Games",1,59.99,"estrategia");
-    agregarSoftJuego("Total War: Three Kingdoms", "Creative Assembly",1,59.99,"estrategia");
+    agregarSoftJuego("Civilization_VI", "Firaxis Games",1,59.99,"estrategia");
+    agregarSoftJuego("Total_War", "Creative Assembly",1,59.99,"estrategia");
 
     
     
-    agregarSoftOfimatica("SoftMaker Office", "SoftMaker Software GmbH",1,69.50);
+    agregarSoftOfimatica("SoftMaker_Office", "SoftMaker Software GmbH",1,69.50);
     agregarSoftOfimatica("OfficeSuite", "MobiSystems",1,29.99);
-    agregarSoftOfimatica("Corel WordPerfect Office", "Corel Corporation",1,149.99);
-    agregarSoftOfimatica("WordPerfect Office", "Corel Corporation",1,249.99);
-    agregarSoftOfimatica("Polaris Office", "Infraware Inc.",1,6.99);
+    agregarSoftOfimatica("Corel_WordPerfect_Office", "Corel Corporation",1,149.99);
+    agregarSoftOfimatica("WordPerfect_Office", "Corel Corporation",1,249.99);
+    agregarSoftOfimatica("Polaris_Office", "Infraware Inc.",1,6.99);
 
     
 
-    agregarSoftProduccion("Adobe Premiere Pro", "Adobe Inc.",17,20.99,"video");
-    agregarSoftProduccion("Ableton Live", "Ableton AG",17,99.00,"musica");
-    agregarSoftProduccion("OBS Studio",  "OBS Project",17,0,"streaming");
-    agregarSoftProduccion("Adobe Photoshop","Adobe Inc.",17,20.99,"fotos");
+    agregarSoftProduccion("Adobe_Premiere_Pro","Adobe_Inc.",17,20.99,"video");
+    agregarSoftProduccion("Ableton_Live","Ableton_AG",17,99.00,"musica");
+    agregarSoftProduccion("OBS_Studio","OBS Project",17,0,"streaming");
+    agregarSoftProduccion("Adobe_Photoshop","Adobe_Inc.",17,20.99,"fotos");
 
     
 
-    agregarSoftNavegador("Google Chrome","Google LLC",1,0);
-    agregarSoftNavegador("Mozilla Firefox", "Mozilla Corporation",1,0);
+    agregarSoftNavegador("Google_Chrome","Google LLC",1,0);
+    agregarSoftNavegador("Mozilla_Firefox", "Mozilla Corporation",1,0);
 
     
 
-    agregarSoftSeguridad("Cryptolock 2023", "Hackers Anónimos",99999,99,"ransomware");
-    agregarSoftSeguridad("SpyMaster Pro","Surveillance Tech Inc.",99999,79.99,"spyware");
-    agregarSoftSeguridad("BotNetBot","Cyber Criminals Ltd.",99999,99.99,"botnets");
-    agregarSoftSeguridad( "StealthRoot 9000", "Underground Hackers Co.",99999,135.75,"rootkits");
+    agregarSoftSeguridad("Cryptolock_2023", "Hackers_Anónimos",99999,99,"ransomware");
+    agregarSoftSeguridad("SpyMaster_Pro","Surveillance_Tech",99999,79.99,"spyware");
+    agregarSoftSeguridad("BotNetBot","CyberCriminals_Ltd.",99999,99.99,"botnets");
+    agregarSoftSeguridad( "StealthRoot_9000", "Underground Hackers Co.",99999,135.75,"rootkits");
     agregarSoftSeguridad("NetWorm-X","Unknown",99999,100.99,"gusanos");
     agregarSoftSeguridad("KeyloggerTroj","Malicious Softworks",99999,49.99,"troyanos");
 
@@ -260,14 +263,16 @@ void Interfaz :: imprimirJuegos(){
 }
 
 void Interfaz :: jugarJuego(string name){
-    Juego *game = todoSoft->retornarJuegoPorNombre(name); 
+    //Juego *game = todoSoft->retornarJuegoPorNombre(name); 
     //Aqui iba una funcion para jugar pero hacerla por juego no me dio el tiempo
+
     bool exist = todoSoft->existeJuegoPorNombre(name);
-    if(exist == true){
-        cout<<"Jugando... o algo asi "<<endl;
+    if(exist){
+        cout<<"Jugando... "<<endl;
     }else{
-        cout<<"Juego no encontrado. "<<endl;
-    };
+        cout<<"Juego no encontrado"<<endl;
+    }
+    return;
 }
 
 void Interfaz :: mostrarGeneroJuegos(){
