@@ -259,8 +259,8 @@ void Interfaz :: jugarJuego(string name){
     Juego *game = todoSoft->retornarJuegoPorNombre(name); 
     //Aqui iba una funcion para jugar pero hacerla por juego no me dio el tiempo
     if(todoSoft->existeJuegoPorNombre(name)){
-        cout<<"Jugando... o algo asi ";
+        cout<<"Jugando... o algo asi "<<endl;
     }else{
-        cout<<"Juego no encontrado. "
-    }
+        cout<<"Juego no encontrado. "<<endl;
+    };
 }

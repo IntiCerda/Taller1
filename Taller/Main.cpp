@@ -37,26 +37,30 @@ int main(int argc, char const *argv[]){
             switch(op){
                 case 1:
                         
-                        cout<<"a"<<endl;
+                    cout<<"a"<<endl;
                     break;
 
                 case 2:
-
+                    cout<<"a"<<endl;
                     break;
 
                 case 3: 
+                    cout<<"a"<<endl;
 
                     break;
 
                 case 4:
+                    cout<<"a"<<endl;
 
                     break;
 
                 case 5:
+                    cout<<"a"<<endl;
 
                     break;
 
                 case 6:
+                    cout<<"a"<<endl;
 
                     break;
 
@@ -128,7 +132,7 @@ void menuJuegos(int num,Interfaz* interfaz){
         cout<<"1.- Mostrar Juegos "<<endl;
         cout<<"2.- Jugar algun juego "<<endl;
         cout<<"3.- Cambiar genero de un juego "<<endl;
-        cout<<"4.- Volver. "
+        cout<<"4.- Volver. ";
         cin>>num;
 
         if(num = 1){
