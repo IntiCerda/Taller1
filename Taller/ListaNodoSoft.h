@@ -14,6 +14,7 @@ class ListaNodoSoft{
      void eliminarSoft(Software*);
      void imprimirLista();
      int getLargo();
+     void imprimirJuegos();
 };
 
 ListaNodoSoft::ListaNodoSoft() {
@@ -60,4 +61,17 @@ void ListaNodoSoft::imprimirLista() {
 }
 int ListaNodoSoft::getLargo() {
     return largo;
+}
+
+void ListaNodoSoft::imprimirJuegos() {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "juego") {
+            // Realiza el cast de 'soft' a un objeto de tipo 'Juego'
+            Juego* juego = static_cast<Juego*>(soft);
+            cout<<juego ->getNombre() << " " << juego->getDev() << " "<< juego->getGenero()<<endl;
+        }
+        aux = aux->getSig();
+    }
 }

@@ -7,6 +7,7 @@ void menuNino();
 void menuAdmin();
 void menuNormal();
 void login();
+void menuJuegos(int op);
 string name; string pass; int age;
 int main(int argc, char const *argv[]){
     Interfaz *interfaz = new Interfaz();
@@ -31,9 +32,10 @@ int main(int argc, char const *argv[]){
             menuNormal();
             int op = -1;
             cout<<"Ingrese opcion: "<<endl;
-
+            cin>>op;
             switch(op){
                 case 1:
+                        int opc = 0;
                         cout<<"a"<<endl;
                     break;
 
@@ -119,5 +121,13 @@ void login(){
     return;
 }
 
+void menuJuegos(int opc){
+    while(opc != -1){
+        
+
+
+
+    }
+}
 
 

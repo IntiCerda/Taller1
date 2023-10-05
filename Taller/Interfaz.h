@@ -30,6 +30,7 @@ class Interfaz{
         void agregarSoftJuego(string,string,int,float,string);
         int returnEdad();
         void cargarBase();
+        void imprimirJuegos();
 
 };
 
@@ -248,3 +249,8 @@ bool Interfaz :: login(string name, string pass){
 int Interfaz :: returnEdad(){
     return usuario->getEdad();
 };
+
+
+void Interfaz :: imprimirJuegos(){
+    todoSoft->imprimirJuegos();
+}
