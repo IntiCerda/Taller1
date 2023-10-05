@@ -7,7 +7,7 @@ void menuNino();
 void menuAdmin();
 void menuNormal();
 void login();
-void menuJuegos(int op);
+void menuJuegos(int num);
 string name; string pass; int age;
 int main(int argc, char const *argv[]){
     Interfaz *interfaz = new Interfaz();
@@ -31,11 +31,12 @@ int main(int argc, char const *argv[]){
         }else if(age >17){
             menuNormal();
             int op = -1;
+            int num = 0;
             cout<<"Ingrese opcion: "<<endl;
             cin>>op;
             switch(op){
                 case 1:
-                        int opc = 0;
+                        
                         cout<<"a"<<endl;
                     break;
 
@@ -121,11 +122,24 @@ void login(){
     return;
 }
 
-void menuJuegos(int opc){
-    while(opc != -1){
+void menuJuegos(int num,Interfaz* interfaz){
+    string ej = "";
+    while(num != -1){
+        cout<<"1.- Mostrar Juegos "<<endl;
+        cout<<"2.- Jugar algun juego "<<endl;
+        cout<<"3.- Cambiar genero de un juego "<<endl;
+        cout<<"4.- Volver. "
+        cin>>num;
+
+        if(num = 1){
+            interfaz ->imprimirJuegos();
+        }else if (num =2)
+        {
+            cout<<"Ingrese nombre del Juego "<<endl;
+            cin>>ej;
+            interfaz->jugarJuego(ej);
+        }
         
-
-
 
     }
 }

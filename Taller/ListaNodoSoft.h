@@ -15,6 +15,8 @@ class ListaNodoSoft{
      void imprimirLista();
      int getLargo();
      void imprimirJuegos();
+     Juego* retornarJuegoPorNombre(string);
+     bool existeJuegoPorNombre(string);
 };
 
 ListaNodoSoft::ListaNodoSoft() {
@@ -74,4 +76,36 @@ void ListaNodoSoft::imprimirJuegos() {
         }
         aux = aux->getSig();
     }
+}
+
+// Retorna un puntero al juego con el nombre especificado o NULL si no se encuentra
+Juego* ListaNodoSoft::retornarJuegoPorNombre(string nombreJuego) {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "juego") {
+            Juego* juego = static_cast<Juego*>(soft);
+            if (juego->getNombre() == nombreJuego) {
+                return juego;
+            }
+        }
+        aux = aux->getSig();
+    }
+    return NULL; // Si no se encontró el juego con el nombre especificado
+}
+
+// Verifica si existe un juego con el nombre especificado en la lista
+bool ListaNodoSoft::existeJuegoPorNombre(string nombreJuego) {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "juego") {
+            Juego* juego = static_cast<Juego*>(soft);
+            if (juego->getNombre() == nombreJuego) {
+                return true; // El juego existe en la lista
+            }
+        }
+        aux = aux->getSig();
+    }
+    return false; // El juego no se encuentra en la lista
 }

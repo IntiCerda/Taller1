@@ -31,6 +31,7 @@ class Interfaz{
         int returnEdad();
         void cargarBase();
         void imprimirJuegos();
+        void jugarJuego(string);
 
 };
 
@@ -250,7 +251,16 @@ int Interfaz :: returnEdad(){
     return usuario->getEdad();
 };
 
-
 void Interfaz :: imprimirJuegos(){
     todoSoft->imprimirJuegos();
+}
+
+void Interfaz :: jugarJuego(string name){
+    Juego *game = todoSoft->retornarJuegoPorNombre(name); 
+    //Aqui iba una funcion para jugar pero hacerla por juego no me dio el tiempo
+    if(todoSoft->existeJuegoPorNombre(name)){
+        cout<<"Jugando... o algo asi ";
+    }else{
+        cout<<"Juego no encontrado. "
+    }
 }
