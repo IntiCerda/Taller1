@@ -19,6 +19,9 @@ class ListaNodoSoft{
      bool existeJuegoPorNombre(string);
      void imprimirOfimatica();
      Ofimatica* retornarOfimaticaPorNombre(string);
+     void imprimirProduccion();
+     bool existeProduccionPorNombre(string);
+     Produccion* retornarProduccionPorNombre(string);
 };
 
 ListaNodoSoft::ListaNodoSoft() {
@@ -122,9 +125,20 @@ void ListaNodoSoft::imprimirOfimatica() {
     while (aux != NULL) {
         Software* soft = aux->getSoft();
         if (soft->tipoSoft() == "ofimatica") {
-            // Realiza el cast de 'soft' a un objeto de tipo 'Juego'
             Ofimatica* offic = static_cast<Ofimatica*>(soft);
             cout<<offic ->getNombre() << ", " << offic->getDev() << ", cantidad de archivos: "<< offic->cantArch()<<endl;
+        }
+        aux = aux->getSig();
+    }
+}
+
+void ListaNodoSoft::imprimirProduccion() {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "produccion") {
+            Produccion* prod = static_cast<Produccion*>(soft);
+            cout<<prod ->getNombre() << ", " << prod->getDev() << ", cantidad de archivos: "<< prod->getTipo()<<endl;
         }
         aux = aux->getSig();
     }
@@ -143,4 +157,34 @@ Ofimatica* ListaNodoSoft::retornarOfimaticaPorNombre(string nombreOfimatica) {
         aux = aux->getSig();
     }
     return NULL; // Si no se encontró la ofimática con el nombre especificado
+}
+
+bool ListaNodoSoft::existeProduccionPorNombre(string nombreProduccion) {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "produccion") {
+            Produccion* produccion = static_cast<Produccion*>(soft);
+            if (produccion->getNombre() == nombreProduccion) {
+                return true; // La producción existe
+            }
+        }
+        aux = aux->getSig();
+    }
+    return false; // La producción no se encuentra
+}
+
+Produccion* ListaNodoSoft::retornarProduccionPorNombre(string nombreProduccion) {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "produccion") {
+            Produccion* produccion = static_cast<Produccion*>(soft);
+            if (produccion->getNombre() == nombreProduccion) {
+                return produccion;
+            }
+        }
+        aux = aux->getSig();
+    }
+    return NULL; // Si no se encontró la producción con el nombre especificado
 }

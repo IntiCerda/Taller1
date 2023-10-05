@@ -14,6 +14,7 @@ class User{
         string amigos[30];
         int contAmigos;
         int cont; //cantArchivos
+        int cantPag;
     
     public:
         User(string,string,int);
@@ -44,6 +45,7 @@ User::User(string nombre, string pass, int edad){
     this -> access = false;
     this -> cont = 0;
     this -> contAmigos =0;
+    this -> cantPag=0;
 
     for (int i = 0; i < 30; i++) {
         amigos[i] = "";

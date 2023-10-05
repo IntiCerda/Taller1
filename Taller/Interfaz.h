@@ -36,6 +36,9 @@ class Interfaz{
         void imprimirOfimatica();
         void addArch(string);
         void deleteArch(string);
+        void imprimirProduccion();
+        void cambiarTipoProduccion(string, string);
+        void mostrarTipoProd();
 
 };
 
@@ -337,3 +340,39 @@ void Interfaz :: deleteArch(string name){
     }
 
 }
+
+void Interfaz :: imprimirProduccion(){
+    todoSoft->imprimirProduccion();
+}
+
+void  Interfaz :: cambiarTipoProduccion(string name, string tipo){
+    bool exist = false;
+    for(int i = 0; i<4;i++){
+        if(tipo == solucion[i]){
+            exist = true;
+        }
+    }
+    bool prodExist = todoSoft->existeProduccionPorNombre(name);
+
+    if(exist==true && prodExist==true){
+        Produccion *prodd = todoSoft->retornarProduccionPorNombre(name);
+        prodd-> setTipo(tipo);
+        return;
+    }else if(exist == false){
+        cout<<"Tipo no encontrado. "<<endl;
+        return;
+
+    }else if(prodExist == false){
+        cout<<"Produccion no encontrado "<<endl;
+        return;
+    }
+    return;
+
+}
+
+void Interfaz :: mostrarTipoProd(){
+    for(int i =0; i<4; i++){
+        cout<<solucion[i]<<endl;
+    }
+}
+

@@ -187,55 +187,11 @@ void menuJuegos(Interfaz* interfaz){
     }
 }
 
-/*
-
-void menuJuegos(Interfaz* interfaz){
-
-    int opcion;
-    string ej;
-    do {
-        cout << "Menú:" << endl;
-        cout << "1. Opción 1" << endl;
-        cout << "2. Opción 2" << endl;
-        cout << "3. Opción 3" << endl;
-        cout << "4. Salir" << endl;
-        cout << "Seleccione una opción: ";
-        cin >> opcion;
-
-        switch (opcion) {
-            case 1:
-                cout << "Has seleccionado la Opción 1." << endl;
-                // Coloca aquí el código para la opción 1.
-                break;
-            case 2:
-                cout<<"\nIngrese nombre del Juego "<<endl;
-                cin>>ej;
-
-                interfaz->jugarJuego(ej);
-                
-                break;
-            case 3:
-                cout << "Has seleccionado la Opción 3." << endl;
-                // Coloca aquí el código para la opción 3.
-                break;
-            case 4:
-                cout << "Saliendo del programa." << endl;
-                break;
-            default:
-                cout << "Opción no válida. Por favor, seleccione una opción válida." << endl;
-                break;
-        }
-
-    } while (opcion != 4);
-
-    return ;
-}
-*/
 void menuOfimatica(Interfaz* interfaz){
         string ej = "";
     int num = 0;
 
-    if(num != 4){
+    while(num != 4){
         cout<<"1.- Mostrar Softwares de Ofimatica "<<endl;
         cout<<"2.- Trabajar en un sofware(Add archivo) "<<endl;
         cout<<"3.- Eliminar trabajo(Delete arch) "<<endl;
@@ -246,21 +202,21 @@ void menuOfimatica(Interfaz* interfaz){
         switch (num){
             case 1:
                 interfaz ->imprimirOfimatica();
-                menuOfimatica(interfaz);
+                
                 break;
 
             case 2:
                 cout<<"\nIngrese nombre del sofware de Ofimatica "<<endl;
                 cin>>ej;
                 interfaz->addArch(ej);
-                menuOfimatica(interfaz);
+                
                 break;
 
             case 3:
                 cout<<"\nIngrese nombre del sofware de Ofimatica "<<endl;
                 cin>>ej;
                 interfaz->deleteArch(ej);
-                menuOfimatica(interfaz);
+                
                 break;
 
             case 4:
@@ -282,32 +238,30 @@ void menuProduccionN(Interfaz* interfaz){
     string name = "";
     string genNuevo = "";
 
-    if(num != 4){
-        cout<<"1.- Mostrar Softwares de Ofimatica "<<endl;
-        cout<<"2.- Trabajar en un sofware(Add archivo) "<<endl;
-        cout<<"3.- Eliminar trabajo(Delete arch) "<<endl;
+    while(num != 4){
+        cout<<"1.- Mostrar Softwares de Produccion "<<endl;
+        cout<<"2.- Cambiar de tipo un software "<<endl;
+        cout<<"3.- Mostrar tipos de Softawares "<<endl;
         cout<<"4.- Volver. "<<endl;
 
         cin>>num;
 
         switch (num){
             case 1:
-                interfaz ->imprimirOfimatica();
-                menuProduccionN(interfaz);
+                interfaz ->imprimirProduccion();
                 break;
 
             case 2:
-                cout<<"\nIngrese nombre del sofware de Ofimatica "<<endl;
-                cin>>ej;
-                interfaz->addArch(ej);
-                menuProduccionN(interfaz);
+                cout<<"\nIngrese nombre del Software de produccion: "<<endl;
+                cin>>name;
+                cout<<"\nIngrese tipo nuevo: "<<endl;
+                cin>>genNuevo;
+
+                interfaz->cambiarTipoProduccion(name,genNuevo);
                 break;
 
             case 3:
-                cout<<"\nIngrese nombre del sofware de Ofimatica "<<endl;
-                cin>>ej;
                 interfaz->deleteArch(ej);
-                menuProduccionN(interfaz);
                 break;
 
             case 4:
@@ -321,3 +275,4 @@ void menuProduccionN(Interfaz* interfaz){
 
     }
 }
+
