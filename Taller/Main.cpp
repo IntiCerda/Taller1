@@ -34,7 +34,7 @@ int main(int argc, char const *argv[]){
 
             switch(op){
                 case 1:
-
+                        cout<<"aaa"<<endl;
                     break;
 
                 case 2:
