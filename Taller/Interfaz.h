@@ -39,7 +39,10 @@ class Interfaz{
         void imprimirProduccion();
         void cambiarTipoProduccion(string, string);
         void mostrarTipoProd();
-
+        void imprimirNavegador();
+        void mostrarHistorial(string);
+        void eliminarHistorial(string);
+        void agregarPagHistorial(string,string);
 };
 
 Interfaz :: Interfaz(){
@@ -320,10 +323,14 @@ void Interfaz :: addArch(string name){
     if(offic!=NULL){
         offic->addArch();
         cout<<"Archivo agregado correctamente; "<<endl;
+        usuario->sumaContador();
+        usuario->getCont();
         return;
 
     }else{
         cout<<"Programa no encontrado... "<<endl;
+        usuario -> restaContador();
+        usuario->getCont();
     }
 
 }
@@ -376,3 +383,38 @@ void Interfaz :: mostrarTipoProd(){
     }
 }
 
+void Interfaz :: imprimirNavegador(){
+    todoSoft->imprimirNavegador();
+
+}
+
+void Interfaz :: mostrarHistorial(string navegador){
+    Navegador *aux = todoSoft->retornarNavegadorPorNombre(navegador);
+    if(aux != NULL){
+        aux->imprimirHistorial();
+    } else{
+        cout<<"nAVEGADOR NO ECONTRADO"<<endl;
+    }
+    return;
+}
+
+void Interfaz :: eliminarHistorial(string navegador){
+    Navegador *aux = todoSoft->retornarNavegadorPorNombre(navegador);
+    if(aux!=NULL){
+        aux -> limpiarHistorial();
+    }else{
+        cout<<"NAVEGADOR NO ECONTRADO"<<endl;
+    }
+    return;
+}
+
+void Interfaz :: agregarPagHistorial(string nav, string url){
+    Navegador *aux = todoSoft->retornarNavegadorPorNombre(nav);
+    if(aux!=NULL){
+        aux->agregarPag(url);
+        cout<<"Pag agregada correctamente "<<endl;
+    }else{
+        cout<<"NAVEGADOR NO ECONTRADO"<<endl;
+    }
+    return;
+}

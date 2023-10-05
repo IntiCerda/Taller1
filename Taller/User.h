@@ -35,6 +35,7 @@ class User{
         virtual string tipoUser() = 0; //Implementar en clases hijas
         virtual string toString() =0;
         void sumaContador();
+        void restaContador();
     
 };
 
@@ -80,9 +81,11 @@ void User:: agregarAmigo(string nombreAmigo){
     this -> amigos[contAmigos] = nombreAmigo;
     contAmigos++;
 }
-
+void User:: restaContador(){
+    this -> cont--;
+}
 void User:: sumaContador(){
-    this -> cont = cont++;
+    this -> cont++;
 }
 void User::setAccess(bool access){
     this -> access = access;

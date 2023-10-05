@@ -10,6 +10,9 @@ void login();
 void menuJuegos(Interfaz *interfaz);
 void menuOfimatica(Interfaz * interfaz);
 void menuProduccionN(Interfaz* interfaz);
+void menuNavegador(Interfaz* interfaz);
+void menuSocial(Interfaz* interfaz);
+void switchNormal(Interfaz* interfaz, int op);
 string name; string pass; int age;
 int main(int argc, char const *argv[]){
     Interfaz *interfaz = new Interfaz();
@@ -39,40 +42,8 @@ int main(int argc, char const *argv[]){
                 menuNormal();
                 cout << "Ingrese opcion: " << endl;
                 cin >> op;
+                switchNormal(interfaz,op);
 
-                switch(op){
-                    case 1:
-                        menuJuegos(interfaz);
-                        break;
-
-                    case 2:
-                        menuOfimatica(interfaz);
-                        break;
-
-                    case 3: 
-                        cout<<"a"<<endl;
-
-                        break;
-
-                    case 4:
-                        cout<<"a"<<endl;
-
-                        break;
-
-                    case 5:
-                        cout<<"a"<<endl;
-
-                        break;
-
-                    case 6:
-                        cout<<"a"<<endl;
-
-                        break;
-
-                    default:
-                        cout << "Número ingresado inválido" << endl;
-                        break;
-                }
             }
         }
     }
@@ -276,3 +247,92 @@ void menuProduccionN(Interfaz* interfaz){
     }
 }
 
+void menuNavegador(Interfaz* interfaz){
+    string ej = "";
+    string ej1="";
+    int num = 0;
+    string url = "";
+    string nav = "";
+
+    while(num != 4){
+        cout<<"1.- Mostrar Navegadores "<<endl;
+        cout<<"2.- Mostrar historial "<<endl;
+        cout<<"3.- Borrar Historial "<<endl;
+        cout<<"4.- Agregar Pagina al historial"<<endl;
+        cout<<"4.- Volver. "<<endl;
+
+        cin>>num;
+
+        switch (num){
+            case 1:
+                interfaz ->imprimirNavegador();
+                break;
+
+            case 2:
+                cout<<"Ingrese el nombre del navegador: "<<endl;
+                cin>>ej;
+                interfaz->mostrarHistorial(ej);
+                break;
+
+            case 3:
+                cout<<"Ingrese el nombre del navegador para borrar el historial: "<<endl;
+                cin>>ej1;
+                interfaz->eliminarHistorial(ej1);
+                break;
+
+            case 4:
+                cout<<"Ingrese el nombre del navegador: "<<endl;
+                cin>>nav;
+                cout<<"Ingrese el URL: "<<endl;
+                cin>>url;
+                interfaz->agregarPagHistorial(nav,url);
+                break;
+
+            case 5:
+                break;
+
+            default:
+                cout<<"\n Numero ingresado invalido"<<endl;
+                break;
+        }
+        
+
+    }
+}
+
+void menuSocial(Interfaz* interfaz){
+
+}
+
+void switchNormal(Interfaz* interfaz, int op){
+                switch(op){
+                    case 1:
+                        menuJuegos(interfaz);
+                        break;
+
+                    case 2:
+                        menuOfimatica(interfaz);
+                        break;
+
+                    case 3: 
+                        menuProduccionN(interfaz);
+                        break;
+
+                    case 4:
+                        cout<<"a"<<endl;
+
+                        break;
+
+                    case 5:
+                        cout<<"a"<<endl;
+
+                        break;
+
+                    case 6:
+                        break;
+
+                    default:
+                        cout << "Número ingresado inválido" << endl;
+                        break;
+                }
+}

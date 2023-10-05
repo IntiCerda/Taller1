@@ -22,6 +22,8 @@ class ListaNodoSoft{
      void imprimirProduccion();
      bool existeProduccionPorNombre(string);
      Produccion* retornarProduccionPorNombre(string);
+     void imprimirNavegador();
+     Navegador* retornarNavegadorPorNombre(string );
 };
 
 ListaNodoSoft::ListaNodoSoft() {
@@ -182,6 +184,33 @@ Produccion* ListaNodoSoft::retornarProduccionPorNombre(string nombreProduccion) 
             Produccion* produccion = static_cast<Produccion*>(soft);
             if (produccion->getNombre() == nombreProduccion) {
                 return produccion;
+            }
+        }
+        aux = aux->getSig();
+    }
+    return NULL; // Si no se encontró la producción con el nombre especificado
+}
+
+void ListaNodoSoft::imprimirNavegador() {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "navegador") {
+            Navegador* nav = static_cast<Navegador*>(soft);
+            cout<<nav ->getNombre() << ", " << nav->getDev() <<endl;
+        }
+        aux = aux->getSig();
+    }
+}
+
+Navegador* ListaNodoSoft::retornarNavegadorPorNombre(string name) {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "navegador") {
+            Navegador* nav = static_cast<Navegador*>(soft);
+            if (nav->getNombre() == name) {
+                return nav;
             }
         }
         aux = aux->getSig();
