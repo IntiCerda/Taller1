@@ -14,9 +14,11 @@ class ListaNodoSoft{
      void eliminarSoft(Software*);
      void imprimirLista();
      int getLargo();
-     void imprimirJuegos();
+     void imprimirJuegos(int);
      Juego* retornarJuegoPorNombre(string);
      bool existeJuegoPorNombre(string);
+     void imprimirOfimatica();
+     Ofimatica* retornarOfimaticaPorNombre(string);
 };
 
 ListaNodoSoft::ListaNodoSoft() {
@@ -65,18 +67,23 @@ int ListaNodoSoft::getLargo() {
     return largo;
 }
 
-void ListaNodoSoft::imprimirJuegos() {
+void ListaNodoSoft::imprimirJuegos(int edadUsuario) {
     NodoSoft* aux = primero;
     while (aux != NULL) {
         Software* soft = aux->getSoft();
         if (soft->tipoSoft() == "juego") {
             // Realiza el cast de 'soft' a un objeto de tipo 'Juego'
             Juego* juego = static_cast<Juego*>(soft);
-            cout<<juego ->getNombre() << " " << juego->getDev() << " "<< juego->getGenero()<<endl;
+            
+            // Compara la edad del usuario con la edad requerida para el juego
+            if (edadUsuario >= juego->getEdad()) {
+                cout << juego->getNombre() << " " << juego->getDev() << " " << juego->getGenero() << endl;
+            }
         }
         aux = aux->getSig();
     }
 }
+
 
 // Retorna un puntero al juego con el nombre especificado o NULL si no se encuentra
 Juego* ListaNodoSoft::retornarJuegoPorNombre(string nombreJuego) {
@@ -108,4 +115,32 @@ bool ListaNodoSoft::existeJuegoPorNombre(string nombreJuego) {
         aux = aux->getSig();
     }
     return false; // El juego no se encuentra en la lista
+}
+
+void ListaNodoSoft::imprimirOfimatica() {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "ofimatica") {
+            // Realiza el cast de 'soft' a un objeto de tipo 'Juego'
+            Ofimatica* offic = static_cast<Ofimatica*>(soft);
+            cout<<offic ->getNombre() << ", " << offic->getDev() << ", cantidad de archivos: "<< offic->cantArch()<<endl;
+        }
+        aux = aux->getSig();
+    }
+}
+
+Ofimatica* ListaNodoSoft::retornarOfimaticaPorNombre(string nombreOfimatica) {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "ofimatica") {
+            Ofimatica* ofimatica = static_cast<Ofimatica*>(soft);
+            if (ofimatica->getNombre() == nombreOfimatica) {
+                return ofimatica;
+            }
+        }
+        aux = aux->getSig();
+    }
+    return NULL; // Si no se encontró la ofimática con el nombre especificado
 }

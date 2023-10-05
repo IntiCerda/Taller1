@@ -12,6 +12,7 @@ class Ofimatica : public Software{
     string tipoSoft();
     void addArch();
     void deleteArch();
+    int cantArch();
 };
 
 Ofimatica:: Ofimatica(string nombre, string developer, int edad, float precio):Software(nombre,developer,edad,precio){
@@ -31,3 +32,6 @@ void Ofimatica :: deleteArch(){
     cont--;
 }
 
+int Ofimatica :: cantArch(){
+    return cont;
+}

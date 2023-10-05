@@ -21,7 +21,7 @@ class Interfaz{
         void agregarUserNino(string, string, int);
         void agregarUserAdmin(string,string,int,string);
         bool login(string,string);
-        
+        void mostrarGeneroJuegos();
         void agregarSoftNavegador(string, string, int, float);
         void agregarSoftOfimatica(string,string,int,float);
         void agregarSoftProduccion(string,string,int,float,string);
@@ -32,6 +32,10 @@ class Interfaz{
         void cargarBase();
         void imprimirJuegos();
         void jugarJuego(string);
+        void cambiarGeneroJuego(string,string);
+        void imprimirOfimatica();
+        void addArch(string);
+        void deleteArch(string);
 
 };
 
@@ -252,15 +256,79 @@ int Interfaz :: returnEdad(){
 };
 
 void Interfaz :: imprimirJuegos(){
-    todoSoft->imprimirJuegos();
+    todoSoft->imprimirJuegos(usuario->getEdad());
 }
 
 void Interfaz :: jugarJuego(string name){
     Juego *game = todoSoft->retornarJuegoPorNombre(name); 
     //Aqui iba una funcion para jugar pero hacerla por juego no me dio el tiempo
-    if(todoSoft->existeJuegoPorNombre(name)){
+    bool exist = todoSoft->existeJuegoPorNombre(name);
+    if(exist == true){
         cout<<"Jugando... o algo asi "<<endl;
     }else{
         cout<<"Juego no encontrado. "<<endl;
     };
+}
+
+void Interfaz :: mostrarGeneroJuegos(){
+    for(int i =0; i<10; i++){
+        cout<<juegos[i]<<endl;
+    }
+
+}
+
+void Interfaz :: cambiarGeneroJuego(string nameJuego, string newGenero){
+    bool exist = false;
+    for(int i =0; i<10; i++){
+        if(newGenero == juegos[i]){
+            exist = true;
+        }
+    }
+    bool juegoExist = todoSoft->existeJuegoPorNombre(nameJuego);
+
+    if(exist == true && juegoExist == true){
+        Juego* juegazo = todoSoft->retornarJuegoPorNombre(nameJuego);
+        juegazo ->cambioGenero(newGenero);
+        cout<<"Cambio realizado correctamente. "<<endl;
+        return;
+    }else if(exist == false){
+        cout<<"Genero no encontrado. "<<endl;
+        return;
+
+    }else if(juegoExist == false){
+        cout<<"Juego no encontrado "<<endl;
+        return;
+    }
+    return;
+
+}
+
+void Interfaz :: imprimirOfimatica(){
+    todoSoft->imprimirOfimatica();
+}
+
+void Interfaz :: addArch(string name){
+    Ofimatica* offic = todoSoft->retornarOfimaticaPorNombre(name);
+    if(offic!=NULL){
+        offic->addArch();
+        cout<<"Archivo agregado correctamente; "<<endl;
+        return;
+
+    }else{
+        cout<<"Programa no encontrado... "<<endl;
+    }
+
+}
+
+void Interfaz :: deleteArch(string name){
+    Ofimatica* offic = todoSoft->retornarOfimaticaPorNombre(name);
+    if(offic!=NULL){
+        offic->deleteArch();
+        cout<<"Archivo eliminado correctamente; "<<endl;
+        return;
+
+    }else{
+        cout<<"Programa no encontrado... "<<endl;
+    }
+
 }
