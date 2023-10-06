@@ -43,6 +43,9 @@ class Interfaz{
         void mostrarHistorial(string);
         void eliminarHistorial(string);
         void agregarPagHistorial(string,string);
+        void eliminarJuego(string);
+        void eliminarOfimatica(string );
+        void eliminarProduccion(string );
 };
 
 Interfaz :: Interfaz(){
@@ -59,6 +62,7 @@ Interfaz :: Interfaz(){
 
 
 void Interfaz::agregarUserNormal(string nombre, string pass, int edad, string correo) {
+    
     User *usser = new UserNormal(nombre, pass, edad, correo);
     todoUser->agregarUser(usser);
     return;
@@ -269,12 +273,13 @@ void Interfaz :: imprimirJuegos(){
 }
 
 void Interfaz :: jugarJuego(string name){
-    //Juego *game = todoSoft->retornarJuegoPorNombre(name); 
+    Juego *game = todoSoft->retornarJuegoPorNombre(name); 
     //Aqui iba una funcion para jugar pero hacerla por juego no me dio el tiempo
 
     bool exist = todoSoft->existeJuegoPorNombre(name);
     if(exist){
-        cout<<"Jugando... "<<endl;
+        cout<<"Jugando "<< game->getNombre()<< endl;
+        game->getListaUser()->agregarUser(usuario);
     }else{
         cout<<"Juego no encontrado"<<endl;
     }
@@ -324,7 +329,7 @@ void Interfaz :: addArch(string name){
         offic->addArch();
         cout<<"Archivo agregado correctamente; "<<endl;
         usuario->sumaContador();
-        usuario->getCont();
+        offic->getListaUser()->agregarUser(usuario);
         return;
 
     }else{
@@ -340,6 +345,7 @@ void Interfaz :: deleteArch(string name){
     if(offic!=NULL){
         offic->deleteArch();
         cout<<"Archivo eliminado correctamente; "<<endl;
+        offic->getListaUser()->agregarUser(usuario);
         return;
 
     }else{
@@ -364,6 +370,7 @@ void  Interfaz :: cambiarTipoProduccion(string name, string tipo){
     if(exist==true && prodExist==true){
         Produccion *prodd = todoSoft->retornarProduccionPorNombre(name);
         prodd-> setTipo(tipo);
+        prodd->getListaUser()->agregarUser(usuario);
         return;
     }else if(exist == false){
         cout<<"Tipo no encontrado. "<<endl;
@@ -392,6 +399,7 @@ void Interfaz :: mostrarHistorial(string navegador){
     Navegador *aux = todoSoft->retornarNavegadorPorNombre(navegador);
     if(aux != NULL){
         aux->imprimirHistorial();
+        aux->getListaUser()->agregarUser(usuario);
     } else{
         cout<<"nAVEGADOR NO ECONTRADO"<<endl;
     }
@@ -402,6 +410,7 @@ void Interfaz :: eliminarHistorial(string navegador){
     Navegador *aux = todoSoft->retornarNavegadorPorNombre(navegador);
     if(aux!=NULL){
         aux -> limpiarHistorial();
+        aux->getListaUser()->agregarUser(usuario);
     }else{
         cout<<"NAVEGADOR NO ECONTRADO"<<endl;
     }
@@ -413,8 +422,42 @@ void Interfaz :: agregarPagHistorial(string nav, string url){
     if(aux!=NULL){
         aux->agregarPag(url);
         cout<<"Pag agregada correctamente "<<endl;
+        aux->getListaUser()->agregarUser(usuario);
     }else{
         cout<<"NAVEGADOR NO ECONTRADO"<<endl;
     }
     return;
 }
+
+void Interfaz :: eliminarJuego(string name){
+    Juego* juego = todoSoft->retornarJuegoPorNombre(name);
+    if(juego != NULL){
+        todoSoft->eliminarSoft(juego);
+        cout<<"Eliminado correctamente "<<endl;
+    }else{
+        cout<<"Juego no encontrado. "<<endl;
+    }
+    
+}
+
+void Interfaz :: eliminarOfimatica(string name){
+        Ofimatica* off = todoSoft->retornarOfimaticaPorNombre(name);
+    if(off != NULL){
+        todoSoft->eliminarSoft(off);
+        cout<<"Eliminado correctamente "<<endl;
+    }else{
+        cout<<"Ofimatica no encontrado. "<<endl;
+    }
+}
+
+void Interfaz :: eliminarProduccion(string name){
+        Produccion* prod = todoSoft->retornarProduccionPorNombre(name);
+    if(prod != NULL){
+        todoSoft->eliminarSoft(prod);
+        cout<<"Eliminado correctamente "<<endl;
+    }else{
+        cout<<"Produccion no encontrado no encontrado. "<<endl;
+    }
+}
+
+

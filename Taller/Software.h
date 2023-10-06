@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include"ListaNodoUser.h"
 using namespace std;
 
 class Software{
@@ -9,7 +10,7 @@ class Software{
         string developer;
         int edad;
         int precio;
-        
+        ListaNodoUser *registroUser;
     
     public:
         Software(string,string,int,float);
@@ -24,7 +25,8 @@ class Software{
         void setNombre(string);
         void setDev(string);
         virtual string tipoSoft() = 0; //Implementar en clases hijas
-    
+        ListaNodoUser* getListaUser();
+       
     
 };
 
@@ -33,6 +35,7 @@ Software::Software(string nombre, string developer, int edad, float precio){
     this -> developer = developer;
     this -> edad = edad;
     this -> precio = precio;
+    registroUser = new ListaNodoUser();
 }
 
 Software::~Software(){};
@@ -50,7 +53,10 @@ float Software:: getPrecio(){
     return this -> precio;
 }
 
+ListaNodoUser* Software :: getListaUser(){
+    return this -> registroUser;
 
+}
 void Software:: setNombre(string nombre){
     this -> nombre = nombre;
 };

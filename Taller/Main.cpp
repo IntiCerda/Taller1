@@ -8,13 +8,18 @@ void menuAdmin();
 void menuNormal();
 void logine(bool log);
 void menuJuegos(Interfaz *interfaz);
+void menuJuegosAdmin(Interfaz *interfaz);
 void menuOfimatica(Interfaz * interfaz);
 void menuProduccionN(Interfaz* interfaz);
+void menuProduccionAdmin(Interfaz* interfaz);
 void menuNavegador(Interfaz* interfaz);
 void menuSocial(Interfaz* interfaz);
+void menuOfimaticaAdmin(Interfaz * interfaz);
 void switchNormal(Interfaz* interfaz, int op,int numero);
+void switchAdmin(Interfaz* interfaz, int op,int numero);
 int reLog();
 string name; string pass; int age;int numero;
+int op;int num;
 int main(int argc, char const *argv[]){
     Interfaz *interfaz = new Interfaz();
 
@@ -34,13 +39,20 @@ int main(int argc, char const *argv[]){
                     menuAdmin();
 
 
-                }else if(age < 18){
-                    menuNino();
+                }else if(age < 18){      
+                    op = -1;
+                    num = 0;
 
+                    while(op!= 7){
+                         menuNino();
+                         cout<<"Ingrese opcion: "<< endl;
+                         cin>>op;
+                         switchAdmin(interfaz,op,numero);
+                    }
 
                 }else if(age >17){
-                    int op = -1;
-                    int num = 0;
+                    op = -1;
+                    num = 0;
 
                     while(op != 6){
                         menuNormal();
@@ -121,7 +133,6 @@ if (a == 1) {
 }
 }
 
-
 void menuJuegos(Interfaz* interfaz){
     string ej = "";
     int num = 0;
@@ -134,50 +145,36 @@ void menuJuegos(Interfaz* interfaz){
         cout<<"2.- Jugar algun juego "<<endl;
         cout<<"3.- Cambiar genero de un juego "<<endl;
         cout<<"4.- Mostrar generos de los Juegos . "<<endl;
-        cout<<"5.- Volver. "<<endl;
-
-        
+        cout<<"5.- Volver. "<<endl;     
         cin>>num;
 
         switch (num){
-        
-
             case 1:
-                interfaz ->imprimirJuegos();
-                
+                interfaz ->imprimirJuegos();           
                 break;
 
             case 2:
-
                 cout<<"\nIngrese nombre del Juego "<<endl;
                 cin>>ej;
-
-                interfaz->jugarJuego(ej);
-                
-                
+                interfaz->jugarJuego(ej);             
                 break;
             
             case 3:
                 cout<<"\nIngrese nombre del juego: "<<endl;
                 cin>>name;
-
                 cout<<"\nIngrese genero nuevo: "<<endl;
                 cin>>genNuevo;
-
-                interfaz -> cambiarGeneroJuego(name,genNuevo);
-
-                
+                interfaz -> cambiarGeneroJuego(name,genNuevo);    
                 break;
 
             case 4:
-                interfaz->mostrarGeneroJuegos();
-                
+                interfaz->mostrarGeneroJuegos();    
                 break;
 
             case 5:
                 break;
-            default:
 
+            default:
                 cout<<"\n Numero ingresado invalido"<<endl;
                 break;
         }
@@ -267,7 +264,7 @@ void menuProduccionN(Interfaz* interfaz){
                 break;
 
             default:
-                cout<<"\n Numero ingresado invalido"<<endl;
+                cout<<"\n Numero ingresado invalido "<<endl;
                 break;
         }
         
@@ -333,30 +330,26 @@ void menuSocial(Interfaz* interfaz){ //FALTA TERMINAR
     int num = 0;
 
     while(num != 4){
-        cout<<"1.- Mostrar Softwares de Ofimatica "<<endl;
-        cout<<"2.- Trabajar en un sofware(Add archivo) "<<endl;
-        cout<<"3.- Eliminar trabajo(Delete arch) "<<endl;
+        cout<<"1.- Mostrar Softwares de Social "<<endl;
+        cout<<"2.- Add amigo "<<endl;
+        cout<<"3.- Delete amigo "<<endl;
         cout<<"4.- Volver. "<<endl;
 
         cin>>num;
 
         switch (num){
             case 1:
-                interfaz ->imprimirOfimatica();
+                
                 
                 break;
 
             case 2:
-                cout<<"\nIngrese nombre del sofware de Ofimatica "<<endl;
-                cin>>ej;
-                interfaz->addArch(ej);
+
                 
                 break;
 
             case 3:
-                cout<<"\nIngrese nombre del sofware de Ofimatica "<<endl;
-                cin>>ej;
-                interfaz->deleteArch(ej);
+
                 
                 break;
 
@@ -387,12 +380,12 @@ void switchNormal(Interfaz* interfaz, int op,int numero){
                         break;
 
                     case 4:
-                        cout<<"a"<<endl;
+                        menuNavegador(interfaz);
 
                         break;
 
                     case 5:
-                        cout<<"a"<<endl;
+                        menuSocial(interfaz);
 
                         break;
 
@@ -420,3 +413,205 @@ int reLog(){
     }
 
 }
+
+void switchAdmin(Interfaz* interfaz, int op,int numero){
+                switch(op){
+                    case 1:
+                        menuJuegosAdmin(interfaz);
+                        break;
+
+                    case 2:
+                        menuOfimaticaAdmin(interfaz);
+                        break;
+
+                    case 3: 
+                        menuProduccionAdmin(interfaz);
+                        break;
+
+                    case 4:
+                        cout<<"a"<<endl;
+
+                        break;
+
+                    case 5:
+                        cout<<"a"<<endl;
+
+                        break;
+
+                    case 6:
+                        break;
+
+                    case 7:
+                        break;
+
+                    default:
+                        cout << "Número ingresado inválido" << endl;
+                        break;
+                }
+}
+
+void menuJuegosAdmin(Interfaz* interfaz){
+    string ej = "";
+    int num = 0;
+    int edad = 0;
+    int precio;
+    string name = "";
+    string genNuevo = "";
+    string dev="";
+
+    while(num != 5){
+        cout<<"1.- Mostrar Juegos "<<endl;
+        cout<<"2.- Agregar Juego "<<endl;
+        cout<<"3.- Eliminar Juego "<<endl;
+        cout<<"4.- Mostrar generos de los Juegos . "<<endl;
+        cout<<"5.- Volver. "<<endl;     
+        cin>>num;
+
+        switch (num){
+            case 1:
+                interfaz ->imprimirJuegos();           
+                break;
+
+            case 2:
+                cout<<"\nIngrese nombre del juego (Reemplazar los espacios con '_' ): "<<endl;
+                cin>>name;
+                cout<<"\nIngrese genero del juego: "<<endl;
+                cin>>genNuevo;
+                cout<<"Ingrese la compania/dev:"<<endl;
+                cin>>dev;
+                cout<<"Ingrese la edad minima :"<<endl;
+                cin>>edad;
+                cout<<"Ingrese el precio (ej 5.99): "<<endl;
+                cin>>precio;
+                interfaz->agregarSoftJuego(name,dev,edad,precio,genNuevo);
+                break;
+            
+            case 3:
+                cout<<"\nIngrese nombre del juego (Reemplazar los espacios con '_' ): "<<endl;
+                cin>>name;
+                interfaz -> eliminarJuego(name);
+                break;
+
+            case 4:
+                interfaz->mostrarGeneroJuegos();    
+                break;
+
+            case 5:
+                break;
+
+            default:
+                cout<<"\n Numero ingresado invalido"<<endl;
+                break;
+        }
+        
+
+    }
+}
+
+void menuOfimaticaAdmin(Interfaz* interfaz){
+    int edad = 0;
+    int precio;
+    string name = "";
+    string genNuevo = "";
+    string dev="";
+    int num = 0;
+
+    while(num != 4){
+        cout<<"1.- Mostrar Softwares de Ofimatica "<<endl;
+        cout<<"2.- Add Software de Ofiimatica "<<endl;
+        cout<<"3.- Eliminar Software de Ofimatica "<<endl;
+        cout<<"4.- Volver. "<<endl;
+
+        cin>>num;
+
+        switch (num){
+            case 1:
+                interfaz ->imprimirOfimatica();
+                break;
+
+            case 2:
+                cout<<"\nIngrese nombre del Software (Reemplazar los espacios con '_' ): "<<endl;
+                cin>>name;
+                cout<<"Ingrese la compania/dev:"<<endl;
+                cin>>dev;
+                cout<<"Ingrese la edad minima :"<<endl;
+                cin>>edad;
+                cout<<"Ingrese el precio (ej 5.99): "<<endl;
+                cin>>precio;
+                interfaz->agregarSoftOfimatica(name,dev,edad,precio);
+                break;
+
+            case 3:
+                cout<<"\nIngrese nombre del sofware de Ofimatica "<<endl;
+                cin>>name;
+                interfaz->eliminarOfimatica(name);          
+                break;
+
+            case 4:
+                break;
+
+            default:
+                cout<<"\n Numero ingresado invalido"<<endl;
+                break;
+        }
+        
+
+    }
+}
+
+void menuProduccionAdmin(Interfaz* interfaz){
+    string ej = "";
+    int num = 0;
+    int edad = 0;
+    int precio;
+    string name = "";
+    string tipo = "";
+    string dev="";
+
+    while(num != 4){
+        cout<<"1.- Mostrar Softwares de Produccion "<<endl;
+        cout<<"2.- Add Produccion "<<endl;
+        cout<<"3.- Delete Produccion "<<endl;
+        cout<<"4.- Volver. "<<endl;
+
+        cin>>num;
+
+        switch (num){
+            case 1:
+                interfaz ->imprimirProduccion();
+                break;
+
+            case 2:
+                cout<<"\nIngrese nombre del Software (Reemplazar los espacios con '_' ): "<<endl;
+                cin>>name;
+                cout<<"\nIngrese tipo de produccion: "<<endl;
+                cin>>tipo;
+                cout<<"Ingrese la compania/dev:"<<endl;
+                cin>>dev;
+                cout<<"Ingrese la edad minima :"<<endl;
+                cin>>edad;
+                cout<<"Ingrese el precio (ej 5.99): "<<endl;
+                cin>>precio;
+
+                interfaz->agregarSoftProduccion(name,dev,edad,precio,tipo);
+                break;
+
+            case 3:
+                cout<<"\nIngrese nombre del Software (Reemplazar los espacios con '_' ): "<<endl;
+                cin>>name;
+                interfaz -> eliminarProduccion(name);
+                break;
+
+            case 4:
+                break;
+
+            default:
+                cout<<"\n Numero ingresado invalido "<<endl;
+                break;
+        }
+        
+
+    }
+}
+
+

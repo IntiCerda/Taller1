@@ -24,6 +24,7 @@ class ListaNodoSoft{
      Produccion* retornarProduccionPorNombre(string);
      void imprimirNavegador();
      Navegador* retornarNavegadorPorNombre(string );
+     void agregarRegistroUser(User *user);
 };
 
 ListaNodoSoft::ListaNodoSoft() {
@@ -217,3 +218,4 @@ Navegador* ListaNodoSoft::retornarNavegadorPorNombre(string name) {
     }
     return NULL; // Si no se encontró la producción con el nombre especificado
 }
+
