@@ -6,46 +6,59 @@ using namespace std;
 void menuNino();
 void menuAdmin();
 void menuNormal();
-void login();
+void logine(bool log);
 void menuJuegos(Interfaz *interfaz);
 void menuOfimatica(Interfaz * interfaz);
 void menuProduccionN(Interfaz* interfaz);
 void menuNavegador(Interfaz* interfaz);
 void menuSocial(Interfaz* interfaz);
-void switchNormal(Interfaz* interfaz, int op);
-string name; string pass; int age;
+void switchNormal(Interfaz* interfaz, int op,int numero);
+int reLog();
+string name; string pass; int age;int numero;
 int main(int argc, char const *argv[]){
     Interfaz *interfaz = new Interfaz();
 
     interfaz -> cargarBase();
     cout<<"Base de datos lista"<<endl;
-    bool log = false;
-    login();
-    log = interfaz ->login(name,pass);
 
-    if(log == true){
-        int age = interfaz->returnEdad();
-        if(age == 99999){
-            menuAdmin();
+    numero = 0;
+    bool log = true;
+
+    logine(log);
+    while(numero != -1){
+            
+            log = interfaz ->login(name,pass);
+            if(log != false){
+                int age = interfaz->returnEdad();
+                if(age == 99999){
+                    menuAdmin();
 
 
-        }else if(age < 18){
-            menuNino();
+                }else if(age < 18){
+                    menuNino();
 
 
-        }else if(age >17){
-            menuNormal();
-            int op = -1;
-            int num = 0;
+                }else if(age >17){
+                    int op = -1;
+                    int num = 0;
 
-            while(op != 6){
-                menuNormal();
-                cout << "Ingrese opcion: " << endl;
-                cin >> op;
-                switchNormal(interfaz,op);
+                    while(op != 6){
+                        menuNormal();
+                        cout << "Ingrese opcion: " << endl;
+                        cin >> op;
+                        switchNormal(interfaz,op,numero);
 
+                    }   
+
+                    
+
+
+                    
+                }
+
+        
             }
-        }
+            logine(log);
     }
     cout<<"Paso! "<<endl;
 
@@ -84,13 +97,28 @@ void menuNormal(){
     cout<<"6.- Salir "<<endl;
 }
 //Cout de login, y cin para guardar datos
-void login(){
-    cout<<"--------Login--------"<<endl;
-    cout<<"Ingrese Nombre: "<<endl;
-    cin>> name;
-    cout<<"Ingrese Contrasena: "<<endl;
+void logine(bool log){
+    int a = 0;
+do {
+    cout << "1.- Loguear." << endl;
+    cout << "2.- Salir." << endl;
+    cin >> a;
+
+    if (a != 1 && a != 2) {
+        cout << "Ingrese una opcion valida." << endl;
+    }
+} while (a != 1 && a != 2);
+
+if (a == 1) {
+    cout << "--------Login--------" << endl;
+    cout << "Ingrese Nombre: ";
+    cin >> name;
+    cout << "Ingrese Contrasena: ";
     cin >> pass;
-    return;
+} else {
+    numero = -1;
+    log = false;
+}
 }
 
 
@@ -300,11 +328,51 @@ void menuNavegador(Interfaz* interfaz){
     }
 }
 
-void menuSocial(Interfaz* interfaz){
+void menuSocial(Interfaz* interfaz){ //FALTA TERMINAR
+    string ej = "";
+    int num = 0;
 
+    while(num != 4){
+        cout<<"1.- Mostrar Softwares de Ofimatica "<<endl;
+        cout<<"2.- Trabajar en un sofware(Add archivo) "<<endl;
+        cout<<"3.- Eliminar trabajo(Delete arch) "<<endl;
+        cout<<"4.- Volver. "<<endl;
+
+        cin>>num;
+
+        switch (num){
+            case 1:
+                interfaz ->imprimirOfimatica();
+                
+                break;
+
+            case 2:
+                cout<<"\nIngrese nombre del sofware de Ofimatica "<<endl;
+                cin>>ej;
+                interfaz->addArch(ej);
+                
+                break;
+
+            case 3:
+                cout<<"\nIngrese nombre del sofware de Ofimatica "<<endl;
+                cin>>ej;
+                interfaz->deleteArch(ej);
+                
+                break;
+
+            case 4:
+                break;
+
+            default:
+                cout<<"\n Numero ingresado invalido"<<endl;
+                break;
+        }
+        
+
+    }
 }
 
-void switchNormal(Interfaz* interfaz, int op){
+void switchNormal(Interfaz* interfaz, int op,int numero){
                 switch(op){
                     case 1:
                         menuJuegos(interfaz);
@@ -335,4 +403,20 @@ void switchNormal(Interfaz* interfaz, int op){
                         cout << "Número ingresado inválido" << endl;
                         break;
                 }
+}
+
+int reLog(){
+    int elec = 0;
+    cout<<"Desea re-loguear(1) o Salir(2). "<<endl;
+    cin>>elec;
+    while(elec!=1 && elec!=2){
+        cout<<"Invalido, seleccione nuevamente. "<<endl;
+        cin>>elec;
+    }
+    if(elec=1){
+        return 1;
+    }else{
+        return 2;
+    }
+
 }
