@@ -51,8 +51,11 @@ class Interfaz{
         void eliminarNavegador(string );
         void eliminarSocial(string );
         void eliminarSeguridad(string);
+        void mostrarUsuariosJuego(string);
+        void mostrarUsuariosOfimatica(string);
+        void mostrarUsuariosProduccion(string);
 };
-
+//Constructor
 Interfaz :: Interfaz(){
     todoSoft = new ListaNodoSoft();
     todoUser = new ListaNodoUser();
@@ -65,28 +68,36 @@ Interfaz :: Interfaz(){
     malware[0] ="ransomware"; malware[1] = "spyware"; malware[2] = "botnets"; malware[3] = "rootkits"; malware[4]="gusanos"; malware[5] ="troyanos";
 }
 
-
+//Agregar Usuario normal
 void Interfaz::agregarUserNormal(string nombre, string pass, int edad, string correo) {
-    
-    User *usser = new UserNormal(nombre, pass, edad, correo);
-    todoUser->agregarUser(usser);
+    if(edad>17){
+        User *usser = new UserNormal(nombre, pass, edad, correo);
+        todoUser->agregarUser(usser);
+    }else{
+        cout<<"Edad insuficiente para crear un usuario normal"<<endl;
+    }
     return;
     
 }
-
+//Agregar Usuario nino
 void Interfaz :: agregarUserNino(string nombre, string pass, int edad){
-    User *user = new Nino(nombre, pass, edad);
-    todoUser -> agregarUser(user);
+    if(edad<18){
+        User *user = new Nino(nombre, pass, edad);
+        todoUser -> agregarUser(user);
+    }else{
+        cout<<"Edad insuficiente para crear un usuario nino"<<endl;
+    }
+
     
     return;
 }
-
+//Agregar Usuario Admin
 void Interfaz:: agregarUserAdmin(string nombre, string pass, int edad,string correo){
     User *user = new Admin(nombre,pass,edad,correo);
     todoUser ->agregarUser(user);
     return;
 }
-
+//Agregar Software Juego
 void Interfaz :: agregarSoftJuego(string nombre, string developer, int edad, float precio, string genero){
     for(int i = 0; i<10;i++){
         if(genero == juegos[i]){
@@ -105,18 +116,18 @@ void Interfaz :: agregarSoftJuego(string nombre, string developer, int edad, flo
 
     return;
 }   
-
+//Agregar Software Navegador
 void Interfaz :: agregarSoftNavegador(string nombre, string developer, int edad, float precio){
     Software *navegador = new Navegador(nombre,  developer,edad,precio);
     todoSoft -> agregarSoft(navegador);
     return;
 }
-
+//Agregar Software Ofimatica
 void Interfaz :: agregarSoftOfimatica(string nombre, string developer, int edad, float precio){
     Software *ofimatica = new Ofimatica(nombre,developer,edad, precio);
     todoSoft -> agregarSoft(ofimatica);
 }
-
+//Agregar Software Produccion
 void Interfaz :: agregarSoftProduccion(string nombre, string developer, int edad, float precio, string tipo){
     for(int i = 0; i<4;i++){
         if(tipo == solucion[i]){
@@ -133,7 +144,7 @@ void Interfaz :: agregarSoftProduccion(string nombre, string developer, int edad
     cout<< r << endl;
    
 }
-
+//Agregar Software Seguridad
 void Interfaz :: agregarSoftSeguridad(string nombre, string developer, int edad, float precio,string tipo){
     for(int i = 0; i<6; i++){
         if(tipo == malware[i]){
@@ -156,7 +167,7 @@ void Interfaz :: agregarSoftSeguridad(string nombre, string developer, int edad,
     cout<< r << endl;
 
 }
-
+//Agregar Software Social
 void Interfaz :: agregarSoftSocial(string nombre, string developer, int edad, float precio){
         Software *social = new Social(nombre,developer,edad,precio);
         todoSoft-> agregarSoft(social);
@@ -258,7 +269,7 @@ void Interfaz :: cargarBase(){
 
 
 }
-
+//Funcion login, para verificar la existencia del usuario y setearlo para trabajar con el
 bool Interfaz :: login(string name, string pass){
     User *aux = NULL;
     aux = todoUser->buscarUserPorNombreYContrasena(name,pass);
@@ -272,36 +283,42 @@ bool Interfaz :: login(string name, string pass){
     }
 
 }
-
+//Retorna la edad del usuario 
 int Interfaz :: returnEdad(){
     return usuario->getEdad();
 };
-
+//Imprime por pantalla los Juegos segun la edad del Usuario
 void Interfaz :: imprimirJuegos(){
     todoSoft->imprimirJuegos(usuario->getEdad());
 }
-
+//Juega un juego ingresado por pantalla, dependiendo de la edad correspondiente juega o no
 void Interfaz :: jugarJuego(string name){
     Juego *game = todoSoft->retornarJuegoPorNombre(name); 
     //Aqui iba una funcion para jugar pero hacerla por juego no me dio el tiempo
 
     bool exist = todoSoft->existeJuegoPorNombre(name);
     if(exist){
-        cout<<"Jugando "<< game->getNombre()<< endl;
-        game->getListaUser()->agregarUser(usuario);
+        if(usuario->getEdad() > game->getEdad()){
+            cout<<"Jugando.. "<< game->getNombre()<< endl;
+            game->getListaUser()->agregarUser(usuario);
+            return;
+        }else{
+            cout<<"Edad insuficiente"<<endl;
+            return;
+        }
     }else{
         cout<<"Juego no encontrado"<<endl;
     }
     return;
 }
-
+//Imprime los generos disponibles para los juegos
 void Interfaz :: mostrarGeneroJuegos(){
     for(int i =0; i<10; i++){
         cout<<juegos[i]<<endl;
     }
 
 }
-
+//Cambia el genero de un juego en especifico, ingresado por pantalla
 void Interfaz :: cambiarGeneroJuego(string nameJuego, string newGenero){
     bool exist = false;
     for(int i =0; i<10; i++){
@@ -328,11 +345,11 @@ void Interfaz :: cambiarGeneroJuego(string nameJuego, string newGenero){
     return;
 
 }
-
+//Imprime los softwares de Ofimatica
 void Interfaz :: imprimirOfimatica(){
     todoSoft->imprimirOfimatica();
 }
-
+//Add archivo de trabajo a un software de Ofimatica
 void Interfaz :: addArch(string name){
     Ofimatica* offic = todoSoft->retornarOfimaticaPorNombre(name);
     if(offic!=NULL){
@@ -349,7 +366,7 @@ void Interfaz :: addArch(string name){
     }
 
 }
-
+//Delete archivo de trabajo a un software de Ofimatica
 void Interfaz :: deleteArch(string name){
     Ofimatica* offic = todoSoft->retornarOfimaticaPorNombre(name);
     if(offic!=NULL){
@@ -363,11 +380,11 @@ void Interfaz :: deleteArch(string name){
     }
 
 }
-
+//Imprime por pantalla los softwares de Produccion
 void Interfaz :: imprimirProduccion(){
     todoSoft->imprimirProduccion();
 }
-
+//Cambia el tipo de un software e produccion en especifico a otro
 void  Interfaz :: cambiarTipoProduccion(string name, string tipo){
     bool exist = false;
     for(int i = 0; i<4;i++){
@@ -393,18 +410,18 @@ void  Interfaz :: cambiarTipoProduccion(string name, string tipo){
     return;
 
 }
-
+//Muestra los tipos de Softwares de produccion existentes
 void Interfaz :: mostrarTipoProd(){
     for(int i =0; i<4; i++){
         cout<<solucion[i]<<endl;
     }
 }
-
+//Imprime por pantalla los Softwares de Navegador
 void Interfaz :: imprimirNavegador(){
     todoSoft->imprimirNavegador();
 
 }
-
+//Muestra el historial de un navegador en especifico
 void Interfaz :: mostrarHistorial(string navegador){
     Navegador *aux = todoSoft->retornarNavegadorPorNombre(navegador);
     if(aux != NULL){
@@ -415,7 +432,7 @@ void Interfaz :: mostrarHistorial(string navegador){
     }
     return;
 }
-
+//Eliminna el historial de un navegador en especifico
 void Interfaz :: eliminarHistorial(string navegador){
     Navegador *aux = todoSoft->retornarNavegadorPorNombre(navegador);
     if(aux!=NULL){
@@ -426,7 +443,7 @@ void Interfaz :: eliminarHistorial(string navegador){
     }
     return;
 }
-
+//Agrega una pagina al historial de un Software en especifico
 void Interfaz :: agregarPagHistorial(string nav, string url){
     Navegador *aux = todoSoft->retornarNavegadorPorNombre(nav);
     if(aux!=NULL){
@@ -438,18 +455,19 @@ void Interfaz :: agregarPagHistorial(string nav, string url){
     }
     return;
 }
-
+//Elimina un juego de la base de datos
 void Interfaz :: eliminarJuego(string name){
     Juego* juego = todoSoft->retornarJuegoPorNombre(name);
     if(juego != NULL){
         todoSoft->eliminarSoft(juego);
+        
         cout<<"Eliminado correctamente "<<endl;
     }else{
         cout<<"Juego no encontrado. "<<endl;
     }
     
 }
-
+//Elimina un software de Ofimatica de la base
 void Interfaz :: eliminarOfimatica(string name){
         Ofimatica* off = todoSoft->retornarOfimaticaPorNombre(name);
     if(off != NULL){
@@ -459,7 +477,7 @@ void Interfaz :: eliminarOfimatica(string name){
         cout<<"Ofimatica no encontrado. "<<endl;
     }
 }
-
+//Elimina un software de Produccion de la base
 void Interfaz :: eliminarProduccion(string name){
         Produccion* prod = todoSoft->retornarProduccionPorNombre(name);
     if(prod != NULL){
@@ -469,7 +487,7 @@ void Interfaz :: eliminarProduccion(string name){
         cout<<"Produccion no encontrado no encontrado. "<<endl;
     }
 }
-
+//Elimina un navegador de la base de datos
 void Interfaz :: eliminarNavegador(string name){
         Navegador* nav = todoSoft->retornarNavegadorPorNombre(name);
     if(nav != NULL){
@@ -479,12 +497,12 @@ void Interfaz :: eliminarNavegador(string name){
         cout<<"Produccion no encontrado no encontrado. "<<endl;
     }
 }
-
+//Imprime los softwares Social disponibles
 void Interfaz :: imprimirSocial(){
     todoSoft->imprimirSocial();
 
 }
-
+//Elimina un software Social de la base de datos
 void Interfaz :: eliminarSocial(string name){
         Social* soc = todoSoft->retornarSocialPorNombre(name);
     if(soc != NULL){
@@ -494,7 +512,7 @@ void Interfaz :: eliminarSocial(string name){
         cout<<"Produccion no encontrado no encontrado. "<<endl;
     }
 }
-
+//Elimina un software de Seguridad de la base de dadots
 void Interfaz :: eliminarSeguridad(string name){
         Seguridad* seg = todoSoft->retornarSeguridadPorNombre(name);
     if(seg != NULL){
@@ -504,10 +522,39 @@ void Interfaz :: eliminarSeguridad(string name){
         cout<<"Produccion no encontrado no encontrado. "<<endl;
     }
 }
-
+//Imprime por pantalla los softwares de seguridad  disponibles en la base
 void Interfaz :: imprimirSeguridad(){
     todoSoft->imprimirSeguridad();
 }
+//Muestra los usuarios que han juegado un juego en especifico
+void Interfaz :: mostrarUsuariosJuego(string name){
+    Juego* juego = todoSoft->retornarJuegoPorNombre(name);
+    if(juego != NULL){
+        juego->getListaUser()->imprimirLista();
+    }else{
+        cout<<"Juego no encontrado. "<<endl;
+    }
+}
+//Muestra los usuarios que han interactuado con un softare de Ofimatica en especifico
+void Interfaz :: mostrarUsuariosOfimatica(string name){
+    Ofimatica* off = todoSoft->retornarOfimaticaPorNombre(name);
+    if(off != NULL){
+        off->getListaUser()->imprimirLista();
+    }else{
+        cout<<"Juego no encontrado. "<<endl;
+    }
+}
+//Muestra los usuarios que han interactuado con un software de Produccion en especifico
+void Interfaz :: mostrarUsuariosProduccion(string name){
+    Produccion* prod = todoSoft->retornarProduccionPorNombre(name);
+    if(prod != NULL){
+        prod->getListaUser()->imprimirLista();
+    }else{
+        cout<<"Juego no encontrado. "<<endl;
+    }
+}
+
+
 
 
 

@@ -19,13 +19,13 @@ void menuSocialAdmin(Interfaz* interfaz);
 void menuOfimaticaAdmin(Interfaz * interfaz);
 void switchNormal(Interfaz* interfaz, int op,int numero);
 void switchAdmin(Interfaz* interfaz, int op,int numero);
+void switchNino(Interfaz* interfaz, int op,int numero);
 void menuSeguridadAdmin(Interfaz* interfaz);
 int reLog();
 string name; string pass; int age;int numero;
 int op;int num;
 int main(int argc, char const *argv[]){
     Interfaz *interfaz = new Interfaz();
-
     interfaz -> cargarBase();
     cout<<"Base de datos lista"<<endl;
 
@@ -34,49 +34,41 @@ int main(int argc, char const *argv[]){
 
     logine(log);
     while(numero != -1){
-            
             log = interfaz ->login(name,pass);
             if(log != false){
                 int age = interfaz->returnEdad();
                 if(age == 99999){
-                    menuAdmin();
-
-
-                }else if(age < 18){      
                     op = -1;
                     num = 0;
-
                     while(op!= 7){
-                         menuNino();
+                         menuAdmin();
                          cout<<"Ingrese opcion: "<< endl;
                          cin>>op;
                          switchAdmin(interfaz,op,numero);
                     }
-
+                }else if(age < 18){      
+                    op = -1;
+                    num = 0;
+                    while(op!=5){
+                        menuNino();
+                        cout << "Ingrese opcion: " << endl;
+                        cin >> op;
+                        switchNino(interfaz,op,numero);
+                    }
                 }else if(age >17){
                     op = -1;
                     num = 0;
-
                     while(op != 6){
                         menuNormal();
                         cout << "Ingrese opcion: " << endl;
                         cin >> op;
                         switchNormal(interfaz,op,numero);
-
                     }   
-
-                    
-
-
-                    
                 }
-
-        
             }
             logine(log);
     }
-    cout<<"Paso! "<<endl;
-
+    cout<<"Log Out! "<<endl;
     return 0;
 }
 
@@ -86,8 +78,8 @@ void menuNino(){
     cout<<"1.- Juegos "<<endl;
     cout<<"2.- Ofimatica "<<endl;
     cout<<"3.- Navegador "<<endl;
-    cout<<"3.- Social "<<endl;
-    cout<<"4.- Salir "<<endl;
+    cout<<"4.- Social "<<endl;
+    cout<<"5.- Salir "<<endl;
 
 }
 //Imprime menu de Admin
@@ -135,7 +127,7 @@ if (a == 1) {
     log = false;
 }
 }
-
+//Menu juegos
 void menuJuegos(Interfaz* interfaz){
     string ej = "";
     int num = 0;
@@ -185,7 +177,7 @@ void menuJuegos(Interfaz* interfaz){
 
     }
 }
-
+//Menu Software Ofimatica
 void menuOfimatica(Interfaz* interfaz){
         string ej = "";
     int num = 0;
@@ -229,7 +221,7 @@ void menuOfimatica(Interfaz* interfaz){
 
     }
 }
-
+//Menu Software Produccion
 void menuProduccionN(Interfaz* interfaz){
     string ej = "";
     int num = 0;
@@ -274,7 +266,7 @@ void menuProduccionN(Interfaz* interfaz){
 
     }
 }
-
+//Menu Software Navegacion
 void menuNavegador(Interfaz* interfaz){
     string ej = "";
     string ej1="";
@@ -327,7 +319,7 @@ void menuNavegador(Interfaz* interfaz){
 
     }
 }
-
+//Menu Software Social
 void menuSocial(Interfaz* interfaz){ //FALTA TERMINAR
     string ej = "";
     int num = 0;
@@ -342,8 +334,7 @@ void menuSocial(Interfaz* interfaz){ //FALTA TERMINAR
 
         switch (num){
             case 1:
-                
-                
+                interfaz -> imprimirSocial();
                 break;
 
             case 2:
@@ -367,7 +358,7 @@ void menuSocial(Interfaz* interfaz){ //FALTA TERMINAR
 
     }
 }
-
+//Opciones del Usuario Normal
 void switchNormal(Interfaz* interfaz, int op,int numero){
                 switch(op){
                     case 1:
@@ -400,7 +391,7 @@ void switchNormal(Interfaz* interfaz, int op,int numero){
                         break;
                 }
 }
-
+//Opcion de relogueo
 int reLog(){
     int elec = 0;
     cout<<"Desea re-loguear(1) o Salir(2). "<<endl;
@@ -416,7 +407,7 @@ int reLog(){
     }
 
 }
-
+//Opciones del Usuario Admin
 void switchAdmin(Interfaz* interfaz, int op,int numero){
                 switch(op){
                     case 1:
@@ -436,8 +427,7 @@ void switchAdmin(Interfaz* interfaz, int op,int numero){
                         break;
 
                     case 5:
-                        cout<<"a"<<endl;
-
+                        menuSeguridadAdmin(interfaz);
                         break;
 
                     case 6:
@@ -452,7 +442,7 @@ void switchAdmin(Interfaz* interfaz, int op,int numero){
                         break;
                 }
 }
-
+//Menu juegos Admin
 void menuJuegosAdmin(Interfaz* interfaz){
     string ej = "";
     int num = 0;
@@ -466,7 +456,7 @@ void menuJuegosAdmin(Interfaz* interfaz){
         cout<<"1.- Mostrar Juegos "<<endl;
         cout<<"2.- Agregar Juego "<<endl;
         cout<<"3.- Eliminar Juego "<<endl;
-        cout<<"4.- Mostrar generos de los Juegos . "<<endl;
+        cout<<"4.- Mostrar el registro de Usuarios de un juego 'X' . "<<endl;
         cout<<"5.- Volver. "<<endl;     
         cin>>num;
 
@@ -496,7 +486,9 @@ void menuJuegosAdmin(Interfaz* interfaz){
                 break;
 
             case 4:
-                interfaz->mostrarGeneroJuegos();    
+                cout<<"\nIngrese nombre del juego (Reemplazar los espacios con '_' ): "<<endl;
+                cin>>name;
+                interfaz->mostrarUsuariosJuego(name);    
                 break;
 
             case 5:
@@ -510,7 +502,7 @@ void menuJuegosAdmin(Interfaz* interfaz){
 
     }
 }
-
+//Menu ofimatica Admin
 void menuOfimaticaAdmin(Interfaz* interfaz){
     int edad = 0;
     int precio;
@@ -519,11 +511,12 @@ void menuOfimaticaAdmin(Interfaz* interfaz){
     string dev="";
     int num = 0;
 
-    while(num != 4){
+    while(num != 5){
         cout<<"1.- Mostrar Softwares de Ofimatica "<<endl;
         cout<<"2.- Add Software de Ofiimatica "<<endl;
         cout<<"3.- Eliminar Software de Ofimatica "<<endl;
-        cout<<"4.- Volver. "<<endl;
+        cout<<"4.- Mostrar el registro de Usuarios de un software de Ofimatica 'X' . "<<endl;
+        cout<<"5.- Volver. "<<endl;
 
         cin>>num;
 
@@ -551,6 +544,12 @@ void menuOfimaticaAdmin(Interfaz* interfaz){
                 break;
 
             case 4:
+                cout<<"\nIngrese nombre del sofware de Ofimatica "<<endl;
+                cin>>name;
+                interfaz ->mostrarUsuariosOfimatica(name);
+                break;
+
+            case 5:
                 break;
 
             default:
@@ -561,7 +560,7 @@ void menuOfimaticaAdmin(Interfaz* interfaz){
 
     }
 }
-
+//Menu Produccion admin
 void menuProduccionAdmin(Interfaz* interfaz){
     string ej = "";
     int num = 0;
@@ -571,11 +570,12 @@ void menuProduccionAdmin(Interfaz* interfaz){
     string tipo = "";
     string dev="";
 
-    while(num != 4){
+    while(num != 5){
         cout<<"1.- Mostrar Softwares de Produccion "<<endl;
         cout<<"2.- Add Produccion "<<endl;
         cout<<"3.- Delete Produccion "<<endl;
-        cout<<"4.- Volver. "<<endl;
+        cout<<"4.- Mostrar el registro de Usuarios de un software de Produccion 'X' . "<<endl;
+        cout<<"5.- Volver. "<<endl;
 
         cin>>num;
 
@@ -606,6 +606,11 @@ void menuProduccionAdmin(Interfaz* interfaz){
                 break;
 
             case 4:
+                cout<<"\nIngrese nombre del sofware de Ofimatica "<<endl;
+                cin>>name;
+                interfaz->mostrarUsuariosProduccion(name);
+                break;
+            case 5:
                 break;
 
             default:
@@ -616,7 +621,7 @@ void menuProduccionAdmin(Interfaz* interfaz){
 
     }
 }
-
+//Menu navegador admin
 void menuNavegadorAdmin(Interfaz* interfaz){
     string ej = "";
     int num = 0;
@@ -667,7 +672,7 @@ void menuNavegadorAdmin(Interfaz* interfaz){
 
     }
 }
-
+//Menu Social Admin
 void menuSocialAdmin(Interfaz* interfaz){ //FALTA TERMINAR
     string ej = "";
     int num = 0;
@@ -719,7 +724,7 @@ void menuSocialAdmin(Interfaz* interfaz){ //FALTA TERMINAR
 
     }
 }
-
+//Menu Seguridad Admin
 void menuSeguridadAdmin(Interfaz* interfaz){ //FALTA TERMINAR
     string ej = "";
     int num = 0;
@@ -737,7 +742,7 @@ void menuSeguridadAdmin(Interfaz* interfaz){ //FALTA TERMINAR
         cout<<" "<<endl;
         cout<<" "<<endl;
         cout<<" "<<endl;
-        
+
         cout<<"4.- Volver. "<<endl;
 
         cin>>num;
@@ -777,4 +782,31 @@ void menuSeguridadAdmin(Interfaz* interfaz){ //FALTA TERMINAR
         
 
     }
+}
+//Opciones del Usuario Nino
+void switchNino(Interfaz* interfaz, int op,int numero){
+                switch(op){
+                    case 1:
+                        menuJuegos(interfaz);
+                        break;
+
+                    case 2:
+                        menuOfimatica(interfaz);
+                        break;
+
+                    case 3: 
+                        menuNavegador(interfaz);
+                        break;
+
+                    case 4:
+                        menuSocial(interfaz);
+                        break;
+
+                    case 5:
+                        break;
+
+                    default:
+                        cout << "Número ingresado inválido" << endl;
+                        break;
+                }
 }
