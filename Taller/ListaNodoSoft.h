@@ -25,6 +25,9 @@ class ListaNodoSoft{
      void imprimirNavegador();
      Navegador* retornarNavegadorPorNombre(string );
      void agregarRegistroUser(User *user);
+     void imprimirSocial();
+     Social* retornarSocialPorNombre(string );
+     Seguridad* retornarSeguridadPorNombre(string);
 };
 
 ListaNodoSoft::ListaNodoSoft() {
@@ -219,3 +222,44 @@ Navegador* ListaNodoSoft::retornarNavegadorPorNombre(string name) {
     return NULL; // Si no se encontró la producción con el nombre especificado
 }
 
+void ListaNodoSoft::imprimirSocial() {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "social") {
+            Social* soc = static_cast<Social*>(soft);
+            cout<<soc ->getNombre() << ", " << soc->getDev() <<endl;
+        }
+        aux = aux->getSig();
+    }
+}
+
+Social* ListaNodoSoft::retornarSocialPorNombre(string name) {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "social") {
+            Social* soc = static_cast<Social*>(soft);
+            if (soc->getNombre() == name) {
+                return soc;
+            }
+        }
+        aux = aux->getSig();
+    }
+    return NULL; // Si no se encontró la producción con el nombre especificado
+}
+
+Seguridad* ListaNodoSoft::retornarSeguridadPorNombre(string name) {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "seguridad") {
+            Seguridad* seg = static_cast<Seguridad*>(soft);
+            if (seg->getNombre() == name) {
+                return seg;
+            }
+        }
+        aux = aux->getSig();
+    }
+    return NULL; // Si no se encontró la producción con el nombre especificado
+}

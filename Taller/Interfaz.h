@@ -43,9 +43,13 @@ class Interfaz{
         void mostrarHistorial(string);
         void eliminarHistorial(string);
         void agregarPagHistorial(string,string);
+        void imprimirSocial();
         void eliminarJuego(string);
         void eliminarOfimatica(string );
         void eliminarProduccion(string );
+        void eliminarNavegador(string );
+        void eliminarSocial(string );
+        void eliminarSeguridad(string);
 };
 
 Interfaz :: Interfaz(){
@@ -132,10 +136,14 @@ void Interfaz :: agregarSoftProduccion(string nombre, string developer, int edad
 void Interfaz :: agregarSoftSeguridad(string nombre, string developer, int edad, float precio,string tipo){
     for(int i = 0; i<6; i++){
         if(tipo == malware[i]){
-            Software *malw = new Seguridad(nombre,developer,edad,precio,tipo);
-            todoSoft -> agregarSoft(malw);
-            return;
-
+            if(edad>17){
+                Software *malw = new Seguridad(nombre,developer,edad,precio,tipo);
+                todoSoft -> agregarSoft(malw);
+                return;
+            }else{
+                cout<<"edad invalida "<<endl;
+                return;
+            }
         }
     }
     cout<< "Tipo de Software de Seguridad no encontrado, pruebe con uno de estos: n/"<<endl;
@@ -460,4 +468,38 @@ void Interfaz :: eliminarProduccion(string name){
     }
 }
 
+void Interfaz :: eliminarNavegador(string name){
+        Navegador* nav = todoSoft->retornarNavegadorPorNombre(name);
+    if(nav != NULL){
+        todoSoft->eliminarSoft(nav);
+        cout<<"Eliminado correctamente "<<endl;
+    }else{
+        cout<<"Produccion no encontrado no encontrado. "<<endl;
+    }
+}
+
+void Interfaz :: imprimirSocial(){
+    todoSoft->imprimirSocial();
+
+}
+
+void Interfaz :: eliminarSocial(string name){
+        Social* soc = todoSoft->retornarSocialPorNombre(name);
+    if(soc != NULL){
+        todoSoft->eliminarSoft(soc);
+        cout<<"Eliminado correctamente "<<endl;
+    }else{
+        cout<<"Produccion no encontrado no encontrado. "<<endl;
+    }
+}
+
+void Interfaz :: eliminarSeguridad(string name){
+        Seguridad* seg = todoSoft->retornarSeguridadPorNombre(name);
+    if(seg != NULL){
+        todoSoft->eliminarSoft(seg);
+        cout<<"Eliminado correctamente "<<endl;
+    }else{
+        cout<<"Produccion no encontrado no encontrado. "<<endl;
+    }
+}
 

@@ -13,10 +13,13 @@ void menuOfimatica(Interfaz * interfaz);
 void menuProduccionN(Interfaz* interfaz);
 void menuProduccionAdmin(Interfaz* interfaz);
 void menuNavegador(Interfaz* interfaz);
+void menuNavegadorAdmin(Interfaz* interfaz);
 void menuSocial(Interfaz* interfaz);
+void menuSocialAdmin(Interfaz* interfaz);
 void menuOfimaticaAdmin(Interfaz * interfaz);
 void switchNormal(Interfaz* interfaz, int op,int numero);
 void switchAdmin(Interfaz* interfaz, int op,int numero);
+void menuSeguridadAdmin(Interfaz* interfaz);
 int reLog();
 string name; string pass; int age;int numero;
 int op;int num;
@@ -429,8 +432,7 @@ void switchAdmin(Interfaz* interfaz, int op,int numero){
                         break;
 
                     case 4:
-                        cout<<"a"<<endl;
-
+                        menuNavegadorAdmin(interfaz);
                         break;
 
                     case 5:
@@ -439,6 +441,7 @@ void switchAdmin(Interfaz* interfaz, int op,int numero){
                         break;
 
                     case 6:
+                        menuSocialAdmin(interfaz);
                         break;
 
                     case 7:
@@ -614,4 +617,164 @@ void menuProduccionAdmin(Interfaz* interfaz){
     }
 }
 
+void menuNavegadorAdmin(Interfaz* interfaz){
+    string ej = "";
+    int num = 0;
+    int edad = 0;
+    int precio;
+    string name = "";
+    string tipo = "";
+    string dev="";
 
+    while(num != 4){
+        cout<<"1.- Mostrar Navegadores "<<endl;
+        cout<<"2.- Agregar Navegador "<<endl;
+        cout<<"3.- Eliminar navegador "<<endl;
+        cout<<"4.- Volver. "<<endl;
+
+        cin>>num;
+
+        switch (num){
+            case 1:
+                interfaz ->imprimirNavegador();
+                break;
+
+            case 2:
+                cout<<"\nIngrese nombre del Navegador (Reemplazar los espacios con '_' ): "<<endl;
+                cin>>name;
+                cout<<"Ingrese la compania/dev:"<<endl;
+                cin>>dev;
+                cout<<"Ingrese la edad minima :"<<endl;
+                cin>>edad;
+                cout<<"Ingrese el precio (ej 5.99): "<<endl;
+                cin>>precio;
+                interfaz->agregarSoftNavegador(name,dev,edad,precio);
+                break;
+
+            case 3:
+                cout<<"Ingrese el nombre del navegador : "<<endl;
+                cin>>name;
+                interfaz->eliminarNavegador(name);
+                break;
+
+            case 4:
+                break;
+            default:
+                cout<<"\n Numero ingresado invalido"<<endl;
+                break;
+        }
+        
+
+    }
+}
+
+void menuSocialAdmin(Interfaz* interfaz){ //FALTA TERMINAR
+    string ej = "";
+    int num = 0;
+    int edad = 0;
+    int precio;
+    string name = "";
+    string tipo = "";
+    string dev="";
+
+    while(num != 4){
+        cout<<"1.- Mostrar Softwares de Social "<<endl;
+        cout<<"2.- Agregar Software social "<<endl;
+        cout<<"3.- Eliminar Software social "<<endl;
+        cout<<"4.- Volver. "<<endl;
+
+        cin>>num;
+
+        switch (num){
+            case 1:
+                interfaz -> imprimirSocial();
+                break;
+
+            case 2:
+                cout<<"\nIngrese nombre del Soft Social (Reemplazar los espacios con '_' ): "<<endl;
+                cin>>name;
+                cout<<"Ingrese la compania/dev:"<<endl;
+                cin>>dev;
+                cout<<"Ingrese la edad minima :"<<endl;
+                cin>>edad;
+                cout<<"Ingrese el precio (ej 5.99): "<<endl;
+                cin>>precio;
+                interfaz -> agregarSoftSocial(name,dev,edad,precio);
+                break;
+
+            case 3:
+                cout<<"\nIngrese nombre del Soft Social (Reemplazar los espacios con '_' ): "<<endl;
+                cin>>name;
+                interfaz -> eliminarSocial(name);
+                break;
+
+            case 4:
+                break;
+
+            default:
+                cout<<"\n Numero ingresado invalido"<<endl;
+                break;
+        }
+        
+
+    }
+}
+
+void menuSeguridadAdmin(Interfaz* interfaz){ //FALTA TERMINAR
+    string ej = "";
+    int num = 0;
+    int edad = 0;
+    int precio;
+    string name = "";
+    string tipo = "";
+    string dev="";
+
+    while(num != 4){
+        cout<<"1.- Mostrar Softwares de Seguidad "<<endl;
+        cout<<"2.- Agregar Software de Seguridad "<<endl;
+        cout<<"3.- Eliminar Software de Seguridad "<<endl;
+        cout<<" "<<endl;
+        cout<<" "<<endl;
+        cout<<" "<<endl;
+        cout<<" "<<endl;
+        
+        cout<<"4.- Volver. "<<endl;
+
+        cin>>num;
+
+        switch (num){
+            case 1:
+                interfaz -> imprimirSocial();
+                break;
+
+            case 2:
+                cout<<"\nIngrese nombre del Soft de Seguidad (Reemplazar los espacios con '_' ): "<<endl;
+                cin>>name;
+                cout<<"Ingrese la compania/dev:"<<endl;
+                cin>>dev;
+                cout<<"Ingrese la edad minima :"<<endl;
+                cin>>edad;
+                cout<<"Ingrese el precio (ej 5.99): "<<endl;
+                cin>>precio;
+                cout<<"Ingrese el tipo de software "<<endl;
+                cin>>tipo;
+                interfaz -> agregarSoftSeguridad(name,dev,edad,precio,tipo);
+                break;
+
+            case 3:
+                cout<<"\nIngrese nombre del Soft de Seguridad (Reemplazar los espacios con '_' ): "<<endl;
+                cin>>name;
+                interfaz -> eliminarSeguridad(name);
+                break;
+
+            case 4:
+                break;
+
+            default:
+                cout<<"\n Numero ingresado invalido"<<endl;
+                break;
+        }
+        
+
+    }
+}
