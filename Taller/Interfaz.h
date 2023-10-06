@@ -44,6 +44,7 @@ class Interfaz{
         void eliminarHistorial(string);
         void agregarPagHistorial(string,string);
         void imprimirSocial();
+        void imprimirSeguridad();
         void eliminarJuego(string);
         void eliminarOfimatica(string );
         void eliminarProduccion(string );
@@ -313,6 +314,7 @@ void Interfaz :: cambiarGeneroJuego(string nameJuego, string newGenero){
     if(exist == true && juegoExist == true){
         Juego* juegazo = todoSoft->retornarJuegoPorNombre(nameJuego);
         juegazo ->cambioGenero(newGenero);
+        juegazo->getListaUser()->agregarUser(usuario);
         cout<<"Cambio realizado correctamente. "<<endl;
         return;
     }else if(exist == false){
@@ -502,4 +504,10 @@ void Interfaz :: eliminarSeguridad(string name){
         cout<<"Produccion no encontrado no encontrado. "<<endl;
     }
 }
+
+void Interfaz :: imprimirSeguridad(){
+    todoSoft->imprimirSeguridad();
+}
+
+
 

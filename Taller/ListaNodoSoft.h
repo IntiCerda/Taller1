@@ -28,6 +28,7 @@ class ListaNodoSoft{
      void imprimirSocial();
      Social* retornarSocialPorNombre(string );
      Seguridad* retornarSeguridadPorNombre(string);
+     void imprimirSeguridad();
 };
 
 ListaNodoSoft::ListaNodoSoft() {
@@ -262,4 +263,16 @@ Seguridad* ListaNodoSoft::retornarSeguridadPorNombre(string name) {
         aux = aux->getSig();
     }
     return NULL; // Si no se encontró la producción con el nombre especificado
+}
+
+void ListaNodoSoft::imprimirSeguridad() {
+    NodoSoft* aux = primero;
+    while (aux != NULL) {
+        Software* soft = aux->getSoft();
+        if (soft->tipoSoft() == "seguridad") {
+            Seguridad* seg = static_cast<Seguridad*>(soft);
+            cout<<seg ->getNombre() << ", " << seg->getDev() <<endl;
+        }
+        aux = aux->getSig();
+    }
 }
