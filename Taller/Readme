@@ -1,0 +1,69 @@
+//Porfavor reemplzara los espacios por un guion bajo(_)
+
+interfaz:{interfaz}.
+
+UsuarioAdmin:{"Admin", "admin123",0,"admin@example.com"}.
+
+UsuarioNormal:{"juanlopez", "clave123", 25, "juan.lopez@example.com"}.
+UsuarioNormal:{"mariaperez", "abc456", 30, "maria.perez@example.com"}.
+UsuarioNormal:{"carlosrodriguez", "p4ssw0rd", 40, "carlos.rodriguez@example.com"}.
+UsuarioNormal:{"lauragonzalez", "securePass", 18, "laura.gonzalez@example.com"}.
+UsuarioNormal:{"pedromartinez", "mySecret123", 65, "pedro.martinez@example.com"}.
+UsuarioNormal:{"anacastro", "qwerty", 50, "ana.castro@example.com"}.
+UsuarioNormal:{"andrescortes", "adminPass", 22, "andres.cortes@example.com"}.
+UsuarioNormal:{"luisruiz", "testPassword", 75, "luis.ruiz@example.com"}.
+UsuarioNormal:{"elenagomez", "12345678", 19, "elena.gomez@example.com"}.
+UsuarioNormal:{"javierlopez", "password123", 55, "javier.lopez@example.com"}.
+
+UsuarioNino:{"lucasgonzalez", "clave456", 16}.
+UsuarioNino:{"isabellaruiz", "abc789", 14}.
+UsuarioNino:{"martinlopez", "p4ssw0rd2", 17}.
+UsuarioNino:{"valentinaperez", "securePass2", 15}.
+
+SoftJuego:{"The_Witcher_3", "CD Projekt RED",17,29.99, "aventura"}.
+SoftJuego:{"Minecraft", "Mojang",1,26.95,"aventura"}.
+SoftJuego:{"Grand_Theft_Auto_V", "Rockstar Games",1,29.99,"accion"}.
+SoftJuego:{"Red_Dead_Redemption_2", "Rockstar Games",17,59.99,"accion"}.
+SoftJuego:{"The_Legend_of_Zelda", "Nintendo",1,59.99,"MMO"}.
+SoftJuego:{"The_Division_2", "Ubisoft",1,29.99,"MMO"}.
+SoftJuego:{"Animal_Crossing", "Nintendo",1,59.99,"simulacion"}.
+SoftJuego:{"Forza_Horizon_4", "Playground Games",1,59.99,"simulacion"}.
+SoftJuego:{"Among_Us", "Innersloth",1,5.99,"horror"}.
+SoftJuego:{"Resident_Evil_7: Biohazard", "Capcom",17,19.99,"horror"}.
+SoftJuego:{"Overwatch", "Blizzard Entertainment",1,19.99,"FPS"}.
+SoftJuego:{"Cyberpunk 2077", "CD Projekt RED",17,49.99,"FPS"}.
+SoftJuego:{"FIFA_22", "Electronic Arts",1,59.99,"deportes"}.
+SoftJuego:{"FIFA_21", "Electronic Arts",1,39.99,"deportes"}.
+SoftJuego:{"Hades", "Supergiant Games",1,24.99,"puzzle"}.
+SoftJuego:{"Portal_2", "Valve Corporation",1,9.99,"puzzle"}.
+SoftJuego:{"Skyrim", "Bethesda Game Studios",1,39.99,"RPG"}.
+SoftJuego:{"Dark_Souls_III", "FromSoftware",17,59.99,"RPG"}.
+SoftJuego:{"Civilization_VI", "Firaxis Games",1,59.99,"estrategia"}.
+SoftJuego:{"Total_War", "Creative Assembly",1,59.99,"estrategia"}.
+
+SoftOfimatica:{"SoftMaker_Office", "SoftMaker Software GmbH",1,69.50}.
+SoftOfimatica:{"OfficeSuite", "MobiSystems",1,29.99}.
+SoftOfimatica:{"Corel_WordPerfect_Office", "Corel Corporation",1,149.99}.
+SoftOfimatica:{"WordPerfect_Office", "Corel Corporation",1,249.99}.
+SoftOfimatica:{"Polaris_Office", "Infraware Inc.",1,6.99}.
+
+
+SoftProduccion:{"Adobe_Premiere_Pro","Adobe_Inc.",17,20.99,"video"}.
+SoftProduccion:{"Ableton_Live","Ableton_AG",17,99.00,"musica"}.
+SoftProduccion:{"OBS_Studio","OBS Project",17,0,"streaming"}.
+SoftProduccion:{"Adobe_Photoshop","Adobe_Inc.",17,20.99,"fotos"}.
+
+SoftNavegacion:{"Google_Chrome","Google LLC",1,0}.
+SoftNavegacion:{"Mozilla_Firefox", "Mozilla Corporation",1,0}.
+
+SoftSeguridad:{"Cryptolock_2023", "Hackers_Anónimos",99999,99,"ransomware"}.
+SoftSeguridad:{"SpyMaster_Pro","Surveillance_Tech",99999,79.99,"spyware"}.
+SoftSeguridad:{"BotNetBot","CyberCriminals_Ltd.",99999,99.99,"botnets"}.
+SoftSeguridad:{"StealthRoot_9000", "Underground Hackers Co.",99999,135.75,"rootkits"}.
+SoftSeguridad:{"NetWorm-X","Unknown",99999,100.99,"gusanos"}.
+SoftSeguridad:{"KeyloggerTroj","Malicious Softworks",99999,49.99,"troyanos"}.
+
+
+SoftSocial:{"Facebook", "Meta Platforms, Inc.",1,0}.
+SoftSocial:{"LinkedIn","LinkedIn Corporation",17,29.99}.
+

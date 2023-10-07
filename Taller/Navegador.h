@@ -18,7 +18,7 @@ class Navegador : public Software{
     void imprimirHistorial();
     void agregarPag(string);
 };
-
+//Constructor
 Navegador:: Navegador(string nombre, string developer, int edad, float precio):Software(nombre,developer,edad,precio){
     this -> historial = new ListaNodoUser();
     for (int i = 0; i < 30; i++) {
@@ -26,30 +26,31 @@ Navegador:: Navegador(string nombre, string developer, int edad, float precio):S
     }
     this -> contHist=0;
 };
+//Destructor
 Navegador:: ~Navegador(){};
-
+//Retorna el tipo de Software al que pertenece
 string Navegador :: tipoSoft(){
     return "navegador";
 }
-
+//Retorna historial que no se uso
 ListaNodoUser* Navegador :: getHistorial(){
     return historial;
 }
-
+//Elimina todos las paginas del historial
 void Navegador :: limpiarHistorial(){
     for (int i = 0; i < 30; i++) {
         registroHistorial[i] = "";
     }
     cout<<"Historial limpiado... "<<endl;
 }
-
+//Imprime todos las paginas del historial
 void Navegador :: imprimirHistorial(){
     for (int i = 0; i < 10; i++) {
         cout<<registroHistorial[i]<<endl;
     }
 
 }
-
+//Agrega todos las paginas del historial
 void Navegador :: agregarPag(string url){
     registroHistorial[contHist] = url;
 }

@@ -30,11 +30,12 @@ class ListaNodoSoft{
      Seguridad* retornarSeguridadPorNombre(string);
      void imprimirSeguridad();
 };
-
+//Constructor
 ListaNodoSoft::ListaNodoSoft() {
     primero = NULL;
     largo = 0;
 }
+//Agrega un nuevos software a la lista enlazada
 void ListaNodoSoft::agregarSoft(Software* soft) {
     NodoSoft *nuevo = new NodoSoft(soft);
     if (primero == NULL) {
@@ -48,6 +49,7 @@ void ListaNodoSoft::agregarSoft(Software* soft) {
     }
     largo++;
 }
+//Elimina un software de la lista enlazada
 void ListaNodoSoft::eliminarSoft(Software* soft) {
     NodoSoft* aux = primero;
     NodoSoft* anterior = NULL;
@@ -66,6 +68,7 @@ void ListaNodoSoft::eliminarSoft(Software* soft) {
         aux = aux->getSig();
     }
 }
+//Imprime los nombres de los objetos almecenados en la lista
 void ListaNodoSoft::imprimirLista() {
     NodoSoft* aux = primero;
     while (aux != NULL) {
@@ -73,10 +76,11 @@ void ListaNodoSoft::imprimirLista() {
         aux = aux->getSig();
     }
 }
+//devuelve el numero de objetos
 int ListaNodoSoft::getLargo() {
     return largo;
 }
-
+//imprime por panntalla solo los objetos de tipo Juego, dependiendo de la edad de quien ingrese
 void ListaNodoSoft::imprimirJuegos(int edadUsuario) {
     NodoSoft* aux = primero;
     while (aux != NULL) {
@@ -93,7 +97,6 @@ void ListaNodoSoft::imprimirJuegos(int edadUsuario) {
         aux = aux->getSig();
     }
 }
-
 
 // Retorna un puntero al juego con el nombre especificado o NULL si no se encuentra
 Juego* ListaNodoSoft::retornarJuegoPorNombre(string nombreJuego) {
@@ -126,7 +129,7 @@ bool ListaNodoSoft::existeJuegoPorNombre(string nombreJuego) {
     }
     return false; // El juego no se encuentra 
 }
-
+//imprime por panntalla solo los objetos de tipo Ofimatica
 void ListaNodoSoft::imprimirOfimatica() {
     NodoSoft* aux = primero;
     while (aux != NULL) {
@@ -138,7 +141,7 @@ void ListaNodoSoft::imprimirOfimatica() {
         aux = aux->getSig();
     }
 }
-
+//imprime por panntalla solo los objetos de tipo Produccion
 void ListaNodoSoft::imprimirProduccion() {
     NodoSoft* aux = primero;
     while (aux != NULL) {
@@ -150,7 +153,7 @@ void ListaNodoSoft::imprimirProduccion() {
         aux = aux->getSig();
     }
 }
-
+//Retorna un onjeto de tipo Ofimatica segun el nnombre de este mismo
 Ofimatica* ListaNodoSoft::retornarOfimaticaPorNombre(string nombreOfimatica) {
     NodoSoft* aux = primero;
     while (aux != NULL) {
@@ -165,7 +168,7 @@ Ofimatica* ListaNodoSoft::retornarOfimaticaPorNombre(string nombreOfimatica) {
     }
     return NULL; // Si no se encontró la ofimática con el nombre especificado
 }
-
+//Retorna un bool, True si existe segun el nombre. False si no
 bool ListaNodoSoft::existeProduccionPorNombre(string nombreProduccion) {
     NodoSoft* aux = primero;
     while (aux != NULL) {
@@ -180,7 +183,7 @@ bool ListaNodoSoft::existeProduccionPorNombre(string nombreProduccion) {
     }
     return false; // La producción no se encuentra
 }
-
+//Retorna un onjeto de tipo Produccion segun el nnombre de este mismo
 Produccion* ListaNodoSoft::retornarProduccionPorNombre(string nombreProduccion) {
     NodoSoft* aux = primero;
     while (aux != NULL) {
@@ -195,7 +198,7 @@ Produccion* ListaNodoSoft::retornarProduccionPorNombre(string nombreProduccion) 
     }
     return NULL; // Si no se encontró la producción con el nombre especificado
 }
-
+//Imprime por pantalla los software de tipo Navegador
 void ListaNodoSoft::imprimirNavegador() {
     NodoSoft* aux = primero;
     while (aux != NULL) {
@@ -207,7 +210,7 @@ void ListaNodoSoft::imprimirNavegador() {
         aux = aux->getSig();
     }
 }
-
+//Retorna un onjeto de tipo Navegador segun el nnombre de este mismo
 Navegador* ListaNodoSoft::retornarNavegadorPorNombre(string name) {
     NodoSoft* aux = primero;
     while (aux != NULL) {
@@ -222,7 +225,7 @@ Navegador* ListaNodoSoft::retornarNavegadorPorNombre(string name) {
     }
     return NULL; // Si no se encontró la producción con el nombre especificado
 }
-
+//Imprime por pantalla todos los software Social
 void ListaNodoSoft::imprimirSocial() {
     NodoSoft* aux = primero;
     while (aux != NULL) {
@@ -234,7 +237,7 @@ void ListaNodoSoft::imprimirSocial() {
         aux = aux->getSig();
     }
 }
-
+//Retorna un onjeto de tipo Social segun el nnombre de este mismo
 Social* ListaNodoSoft::retornarSocialPorNombre(string name) {
     NodoSoft* aux = primero;
     while (aux != NULL) {
@@ -249,7 +252,7 @@ Social* ListaNodoSoft::retornarSocialPorNombre(string name) {
     }
     return NULL; // Si no se encontró la producción con el nombre especificado
 }
-
+//Retorna un onjeto de tipo Seguridad segun el nnombre de este mismo
 Seguridad* ListaNodoSoft::retornarSeguridadPorNombre(string name) {
     NodoSoft* aux = primero;
     while (aux != NULL) {
@@ -264,7 +267,7 @@ Seguridad* ListaNodoSoft::retornarSeguridadPorNombre(string name) {
     }
     return NULL; // Si no se encontró la producción con el nombre especificado
 }
-
+//Imprime por pantalla todos los softwares de tipo seguridad
 void ListaNodoSoft::imprimirSeguridad() {
     NodoSoft* aux = primero;
     while (aux != NULL) {

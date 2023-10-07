@@ -12,16 +12,15 @@ class Nino :public User{
     string tipoUser();
     string toString();
 };
-
-Nino:: Nino (string nombre, string pass, int edad) :User(nombre, pass, edad){
-        
-};
+//Constructor del Usuario Nino
+Nino:: Nino (string nombre, string pass, int edad) :User(nombre, pass, edad){};
+//Destructor
 Nino :: ~Nino(){};
-
+//Rertorna el tipo de usuario al que pertenece
 string Nino :: tipoUser(){
     return "nino";
 }
-
+//ToString
 string Nino :: toString(){
     string r = "";
     r = "Nombre: " + this->getNombre()+ " Edad: " + to_string(this->getEdad()) +" Tipo:" + this-> tipoUser();

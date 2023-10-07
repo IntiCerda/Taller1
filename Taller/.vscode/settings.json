@@ -4,6 +4,7 @@
         "new": "cpp",
         "iostream": "cpp",
         "limits": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "readme": "cpp"
     }
 }

@@ -22,28 +22,29 @@ class NodoSoft{
         void setSig(NodoSoft*);
     
 };
-
+//Constructor del Nodo
 NodoSoft :: NodoSoft(Software* soft){
     this -> soft = soft;
     this -> sig = NULL;
     
 }
-
+//Destructor
 NodoSoft :: ~NodoSoft(){
     this -> soft -> ~Software();
 }
-
+//Retorna el Software 
 Software *NodoSoft :: getSoft(){
     return this -> soft;
 }
+//Retorna el Nodo Siguiente
 NodoSoft *NodoSoft :: getSig(){
     return this -> sig;
 }
-
+//Setea el software en el nodo
 void NodoSoft :: setSoft(Software *soft){
     this -> soft = soft;
 }
-
+//Setea el nodo siguiente, para enlazarlos
 void NodoSoft:: setSig(NodoSoft *nodoSiguiente){
     this -> sig = nodoSiguiente;
 }
