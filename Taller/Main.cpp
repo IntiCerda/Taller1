@@ -22,6 +22,7 @@ void switchAdmin(Interfaz* interfaz, int op,int numero);
 void switchNino(Interfaz* interfaz, int op,int numero);
 void menuSeguridadAdmin(Interfaz* interfaz);
 void crearUser(Interfaz *interfaz);
+void crearAdmin(Interfaz *interfaz);
 string name; string pass; int age;int numero;
 int op;int num;
 int main(int argc, char const *argv[]){
@@ -40,7 +41,7 @@ int main(int argc, char const *argv[]){
                 if(age == 99999){
                     op = -1;
                     num = 0;
-                    while(op!= 7){
+                    while(op!= 8){
                          menuAdmin();
                          cout<<"Ingrese opcion: "<< endl;
                          cin>>op;
@@ -91,7 +92,8 @@ void menuAdmin(){
     cout<<"4.- Navegador "<<endl;
     cout<<"5.- Seguridad "<<endl;
     cout<<"6.- Social "<<endl;
-    cout<<"7.- Salir "<<endl;
+    cout<<"7.- Crear un Admin"<<endl;
+    cout<<"8.- Salir "<<endl;
 }
 //Imprime menu Normal
 void menuNormal(){
@@ -424,8 +426,11 @@ void switchAdmin(Interfaz* interfaz, int op,int numero){
                         break;
 
                     case 7:
+                        crearAdmin(interfaz);
                         break;
 
+                    case 8:
+                        break;
                     default:
                         cout << "Número ingresado inválido" << endl;
                         break;
@@ -799,9 +804,9 @@ void switchNino(Interfaz* interfaz, int op,int numero){
                         break;
                 }
 }
-
+//Opciones de crear usuario desde el interfaz
 void crearUser(Interfaz *interfaz){
-    int ed; string nam;string crr; string psw;
+    int ed;string crr;
     cout<<"Ingrese edad: "<<endl;
     cin>>ed;
     while(ed<1 || ed>99){
@@ -825,4 +830,16 @@ void crearUser(Interfaz *interfaz){
         cin>>crr;
         interfaz->agregarUserNino(name,pass,ed);
     }
+}
+//Crea admind, desde el menu de admin
+void crearAdmin(Interfaz *interfaz){
+        int ed = 0;string crr;
+        cout<<"Ingrese nombre: "<<endl;
+        cin>>name;
+        cout<<"Ingrese correo: "<<endl;
+        cin>>crr;
+        cout<<"Ingrese contrasena: "<<endl;
+        cin>>pass;
+        interfaz->agregarUserAdmin(name,pass,ed,crr);
+
 }
