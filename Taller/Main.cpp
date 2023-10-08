@@ -6,7 +6,7 @@ using namespace std;
 void menuNino();
 void menuAdmin();
 void menuNormal();
-void logine(bool log);
+void logine(bool log,Interfaz* interfaz);
 void menuJuegos(Interfaz *interfaz);
 void menuJuegosAdmin(Interfaz *interfaz);
 void menuOfimatica(Interfaz * interfaz);
@@ -32,7 +32,7 @@ int main(int argc, char const *argv[]){
     numero = 0;
     bool log = true;
 
-    logine(log);
+    logine(log,interfaz);
     while(numero != -1){
             log = interfaz ->login(name,pass);
             if(log != false){
@@ -66,7 +66,7 @@ int main(int argc, char const *argv[]){
                     }   
                 }
             }
-            logine(log);
+            logine(log,interfaz);
     }
     cout<<"Log Out! "<<endl;
     return 0;
@@ -104,17 +104,18 @@ void menuNormal(){
     cout<<"6.- Salir "<<endl;
 }
 //Cout de login, y cin para guardar datos
-void logine(bool log){
+void logine(bool log,Interfaz* interfaz){
     int a = 0;
 do {
     cout << "1.- Loguear." << endl;
-    cout << "2.- Salir." << endl;
+    cout<<"2.- Crear Usuario"<<endl;
+    cout << "3.- Salir." << endl;
     cin >> a;
 
-    if (a != 1 && a != 2) {
+    if (a != 1 && a != 2 && a != 3 ) {
         cout << "Ingrese una opcion valida." << endl;
     }
-} while (a != 1 && a != 2);
+} while (a != 1 && a != 2 && a != 3);
 
 if (a == 1) {
     cout << "--------Login--------" << endl;
@@ -122,7 +123,9 @@ if (a == 1) {
     cin >> name;
     cout << "Ingrese Contrasena: ";
     cin >> pass;
-} else {
+} else if(a == 2){
+    crearUser(interfaz);
+}else{
     numero = -1;
     log = false;
 }
@@ -798,5 +801,28 @@ void switchNino(Interfaz* interfaz, int op,int numero){
 }
 
 void crearUser(Interfaz *interfaz){
+    int ed; string nam;string crr; string psw;
+    cout<<"Ingrese edad: "<<endl;
+    cin>>ed;
+    while(ed<1 || ed>99){
+        cout<<"Edad invalida: "<<endl;
+        cin>>ed;
+    }
 
+    if(ed>17){
+        cout<<"Ingrese nombre: "<<endl;
+        cin>>name;
+        cout<<"Ingrese correo: "<<endl;
+        cin>>crr;
+        cout<<"Ingrese contrasena: "<<endl;
+        cin>>pass;
+        interfaz->agregarUserNormal(name,pass,ed,crr);
+
+    }else{
+        cout<<"Ingrese nombre: "<<endl;
+        cin>>name;
+        cout<<"Ingrese contrasena: "<<endl;
+        cin>>crr;
+        interfaz->agregarUserNino(name,pass,ed);
+    }
 }
