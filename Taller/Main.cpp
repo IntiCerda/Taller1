@@ -21,7 +21,7 @@ void switchNormal(Interfaz* interfaz, int op,int numero);
 void switchAdmin(Interfaz* interfaz, int op,int numero);
 void switchNino(Interfaz* interfaz, int op,int numero);
 void menuSeguridadAdmin(Interfaz* interfaz);
-int reLog();
+void crearUser(Interfaz *interfaz);
 string name; string pass; int age;int numero;
 int op;int num;
 int main(int argc, char const *argv[]){
@@ -392,21 +392,7 @@ void switchNormal(Interfaz* interfaz, int op,int numero){
                 }
 }
 //Opcion de relogueo
-int reLog(){
-    int elec = 0;
-    cout<<"Desea re-loguear(1) o Salir(2). "<<endl;
-    cin>>elec;
-    while(elec!=1 && elec!=2){
-        cout<<"Invalido, seleccione nuevamente. "<<endl;
-        cin>>elec;
-    }
-    if(elec=1){
-        return 1;
-    }else{
-        return 2;
-    }
 
-}
 //Opciones del Usuario Admin
 void switchAdmin(Interfaz* interfaz, int op,int numero){
                 switch(op){
@@ -809,4 +795,8 @@ void switchNino(Interfaz* interfaz, int op,int numero){
                         cout << "Número ingresado inválido" << endl;
                         break;
                 }
+}
+
+void crearUser(Interfaz *interfaz){
+
 }
