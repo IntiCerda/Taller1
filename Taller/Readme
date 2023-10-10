@@ -1,4 +1,5 @@
 //Porfavor reemplzara los espacios por un guion bajo(_)
+// Para correr el programa usar: g++ -o Main Main.cpp; .\Main
 
 interfaz:{interfaz}.
 
